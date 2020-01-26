@@ -18,8 +18,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
-import com.syrous.yccestudentlibraryjava.Listeners.OnClickListener;
-import com.syrous.yccestudentlibraryjava.Listeners.OnCompleteListener;
 import com.syrous.yccestudentlibraryjava.R;
 
 /**
@@ -55,7 +53,7 @@ public class LoginFragment extends Fragment {
         SignInButton signInButton = v.findViewById(R.id.signInButton);
         signInButton.setSize(SignInButton.SIZE_STANDARD);
         signInButton.setColorScheme(SignInButton.COLOR_LIGHT);
-        signInButton.setOnClickListener(new OnClickListener());
+        signInButton.setOnClickListener((View) -> { signIn();});
 
         return v;
     }
@@ -85,6 +83,11 @@ public class LoginFragment extends Fragment {
     private void handleSignInResult(Task<GoogleSignInAccount> task) {
             try{
                 GoogleSignInAccount account = task.getResult(ApiException.class);
+                Log.d(TAG, "Username : "+account.getDisplayName());
+                Log.d(TAG, "UserID : "+account.getId());
+                Log.d(TAG, "UserEmail : "+account.getEmail());
+                Log.d(TAG, "UserToken : "+account.getIdToken());
+
                 updateUI(account);
             } catch (ApiException e) {
 
@@ -94,13 +97,13 @@ public class LoginFragment extends Fragment {
     }
 
     public void signOut(){
-        mClient.signOut().addOnCompleteListener(getActivity(), new OnCompleteListener());
+        mClient.signOut().addOnCompleteListener(getActivity(), (View) -> {Log.d(TAG, "User Signed Out : ");});
     }
 
-    public void revokeAccess(){
-        mClient.revokeAccess()
-                .addOnCompleteListener(getActivity(),new OnCompleteListener());
-    }
+//    public void revokeAccess(){
+//        mClient.revokeAccess()
+//                .addOnCompleteListener(getActivity(), //TODO : onCompleteListener);
+//    }
 
     private void updateUI(GoogleSignInAccount account) {
         if(account == null){
