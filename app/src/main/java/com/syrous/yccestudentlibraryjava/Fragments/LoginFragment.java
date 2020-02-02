@@ -45,6 +45,7 @@ public class LoginFragment extends Fragment {
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                                     .requestEmail()
+                                    .requestId()
                                     .build();
 
         mClient = GoogleSignIn.getClient(getActivity(), gso);
