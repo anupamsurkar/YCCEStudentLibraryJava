@@ -115,7 +115,7 @@ public class LoginFragment extends Fragment {
         else {
             //TODO : Move to The Next Screen
             Intent intent= new Intent(getActivity(), HomeActivity.class);
-               startActivity(intent);
+            startActivity(intent);
 
         }
     }
