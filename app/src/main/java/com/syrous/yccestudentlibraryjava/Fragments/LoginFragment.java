@@ -19,6 +19,7 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 import com.syrous.yccestudentlibraryjava.Activities.HomeActivity;
+import com.syrous.yccestudentlibraryjava.Home_scroll;
 import com.syrous.yccestudentlibraryjava.R;
 
 import static com.syrous.yccestudentlibraryjava.Constants.GlobalConstants.TAG;
@@ -118,7 +119,7 @@ public class LoginFragment extends Fragment {
         }
         else {
             //TODO : Move to The Next Screen
-            Intent intent= new Intent(getActivity(), HomeActivity.class);
+            Intent intent= new Intent(getActivity(), Home_scroll.class);
                 startActivity(intent);
 
         }
