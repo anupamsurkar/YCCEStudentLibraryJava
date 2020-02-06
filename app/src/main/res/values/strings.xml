@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">YCCEStudentLibraryJava</string>
+    <string name="ycce_student_library">YCCE Student Library</string>
 </resources>
