@@ -18,9 +18,10 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
-import com.syrous.yccestudentlibraryjava.Activities.LoginActivity;
-import com.syrous.yccestudentlibraryjava.HomeActivity;
+import com.syrous.yccestudentlibraryjava.Activities.HomeActivity;
 import com.syrous.yccestudentlibraryjava.R;
+
+import static com.syrous.yccestudentlibraryjava.Constants.GlobalConstants.TAG;
 
 /**
  * Created By : Syrous
@@ -29,7 +30,7 @@ import com.syrous.yccestudentlibraryjava.R;
 
 public class LoginFragment extends Fragment {
 
-    public static final String TAG = "SignUpActivity";
+
     public static final int RC_SIGN_IN = 9001;
 
     private GoogleSignInClient mClient;
@@ -43,7 +44,10 @@ public class LoginFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
+
         View v = inflater.inflate(R.layout.fragment_login, container, false);
+
+        Log.d(TAG, "View Created !!!");
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                                     .requestEmail()
@@ -65,7 +69,7 @@ public class LoginFragment extends Fragment {
     public void onStart() {
         super.onStart();
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getActivity()); // Check the Last Signed In User
-        updateUI(account);
+        updateUI(null);
     }
 
     public void signIn(){
@@ -103,10 +107,10 @@ public class LoginFragment extends Fragment {
         mClient.signOut().addOnCompleteListener(getActivity(), (View) -> {Log.d(TAG, "User Signed Out : ");});
     }
 
-//    public void revokeAccess(){
-//        mClient.revokeAccess()
-//                .addOnCompleteListener(getActivity(), //TODO : onCompleteListener);
-//    }
+    public void revokeAccess(){
+        mClient.revokeAccess()
+                .addOnCompleteListener(getActivity(), (task) -> updateUI(null));
+    }
 
     private void updateUI(GoogleSignInAccount account) {
         if(account == null){

@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">YCCEStudentLibraryJava</string>
     <string name="ycce_student_library">YCCE Student Library</string>
+    <string name="login_screen_title">SignUp with Google</string>
 </resources>
