@@ -120,7 +120,7 @@ public class LoginFragment extends Fragment {
         else {
             //TODO : Move to The Next Screen
             Intent intent= new Intent(getActivity(), Home_scroll.class);
-                startActivity(intent);
+                  startActivity(intent);
 
         }
     }
