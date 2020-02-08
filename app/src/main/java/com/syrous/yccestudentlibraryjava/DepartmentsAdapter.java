@@ -41,7 +41,7 @@ public class DepartmentsAdapter extends RecyclerView.Adapter<DepartmentsAdapter.
         //holder.dept_title.setText(mdata.get(position).ge);
 
         holder.dept_thumbnail.setImageResource(mdata.get(position).getThumbnail());
-        //holder.dept_title.setText(mdata.get(position).);
+        holder.dept_title.setText(mdata.get(position).getDept());
 
 
 
