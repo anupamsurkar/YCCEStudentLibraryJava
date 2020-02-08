@@ -59,7 +59,16 @@
             android:textSize="36sp"
             android:paddingBottom="10dp">
 
+
         </TextView>
+
+
+<androidx.recyclerview.widget.RecyclerView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/recycler_other_features">
+
+</androidx.recyclerview.widget.RecyclerView>
 
     </LinearLayout>
 
