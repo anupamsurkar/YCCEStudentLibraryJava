@@ -3,4 +3,15 @@
     <string name="ycce_student_library">YCCE Student Library</string>
     <string name="login_screen_title">SignUp with Google</string>
     <string name="ycce">YCCE Student Library</string>
+
+    <string-array name="semesters">
+        <item>Semester-I</item>
+        <item>Semester-II</item>
+        <item>Semester-III</item>
+        <item>Semester-IV</item>
+        <item>Semester-V</item>
+        <item>Semester-VI</item>
+        <item>Semester-VII</item>
+        <item>Semester-VIII</item>
+    </string-array>
 </resources>

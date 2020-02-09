@@ -1,5 +1,6 @@
 package com.syrous.yccestudentlibraryjava;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -13,11 +14,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.View;
+import android.widget.Button;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Home_scroll extends AppCompatActivity {
+
+
 
     List<Departments> oneDept;
 
@@ -27,6 +31,7 @@ public class Home_scroll extends AppCompatActivity {
 
 
     RecyclerView OfRecycler;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +44,11 @@ public class Home_scroll extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+               /* Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();*/
+
+                Intent intent= new Intent(Home_scroll.this, CivilHOme.class);
+                startActivity(intent);
             }
         });
 
