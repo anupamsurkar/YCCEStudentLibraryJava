@@ -9,7 +9,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CivilHOme"></activity>
+        <activity android:name=".ElectricalAdapter"></activity>
+        <activity android:name=".ElectricalHome" />
+        <activity android:name=".ElectronicsAdapter" />
+        <activity android:name=".ElectronicsHome" />
+        <activity android:name=".EtcAdapter" />
+        <activity android:name=".EtcHome" />
+        <activity android:name=".MechHome" />
+        <activity android:name=".MechAdapter" />
+        <activity android:name=".CtechAdapter" />
+        <activity android:name=".CtechHome" />
+        <activity android:name=".ItHome" />
+        <activity android:name=".ItAdapter" />
+        <activity android:name=".CivilHOme" />
         <activity
             android:name=".Home_scroll"
             android:label="@string/ycce"

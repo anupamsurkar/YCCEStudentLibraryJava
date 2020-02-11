@@ -6,27 +6,28 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
-public class CivilHOme extends AppCompatActivity {
+public class ItHome extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    CivilAdapter civilAdapter;
+    ItAdapter itAdapter;
 
     String[] semname;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_civil_home);
 
-        recyclerView= findViewById(R.id.civil_home_recycler);
+        setContentView(R.layout.activity_it_home);
+        recyclerView= findViewById(R.id.it_home_recycler);
 
         semname= getResources().getStringArray(R.array.semesters);
 
-      civilAdapter = new CivilAdapter(CivilHOme.this , semname);
+        itAdapter = new ItAdapter(ItHome.this , semname);
 
-      recyclerView.setAdapter(civilAdapter);
+        recyclerView.setAdapter(itAdapter);
 
-      recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
 
     }
 }

@@ -1,13 +1,17 @@
 package com.syrous.yccestudentlibraryjava;
 
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -44,6 +48,43 @@ public class DepartmentsAdapter extends RecyclerView.Adapter<DepartmentsAdapter.
         holder.dept_title.setText(mdata.get(position).getDept());
 
 
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(position == 0){
+                    Intent intent = new Intent(mContext, CivilHOme.class);
+                    mContext.startActivity(intent);
+                }
+                if(position == 1){
+                    Intent intent = new Intent(mContext,CtechHome.class);
+                    mContext.startActivity(intent);
+                }
+                if(position == 2){
+                    Intent intent = new Intent(mContext, CivilHOme.class);
+                    mContext.startActivity(intent);
+                }
+                if(position == 3){
+                    Intent intent = new Intent(mContext, ElectricalHome.class);
+                    mContext.startActivity(intent);
+                }
+                if(position == 4){
+                    Intent intent = new Intent(mContext, EtcHome.class);
+                    mContext.startActivity(intent);
+                }
+                if(position == 5){
+                    Intent intent = new Intent(mContext, ElectronicsHome.class);
+                    mContext.startActivity(intent);
+                }
+                if(position == 6){
+                    Intent intent = new Intent(mContext, MechHome.class);
+                    mContext.startActivity(intent);
+                }
+                if(position == 7){
+                    Intent intent = new Intent(mContext, ItHome.class);
+                    mContext.startActivity(intent);
+                }
+            }
+        });
 
     }
 
@@ -56,12 +97,14 @@ public class DepartmentsAdapter extends RecyclerView.Adapter<DepartmentsAdapter.
 
         TextView dept_title;
         ImageView dept_thumbnail;
+        CardView cardView;
 
         public MyVIewHolder(@NonNull View itemView) {
             super(itemView);
 
             dept_title= (TextView) itemView.findViewById(R.id.dept_name);
             dept_thumbnail= (ImageView) itemView.findViewById(R.id.img_id);
+            cardView = (CardView)itemView.findViewById(R.id.id_card);
 
 
 
