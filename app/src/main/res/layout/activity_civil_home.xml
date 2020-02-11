@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:fontFamily="@font/roboto_bold"
-            android:text="Civil Engineering"
+            android:text="@string/civil"
             android:textColor="@color/common_google_signin_btn_text_dark_focused"
             android:textSize="32sp"
             android:textStyle="bold"

@@ -1,37 +1,36 @@
 package com.syrous.yccestudentlibraryjava;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.view.menu.MenuView;
-import androidx.recyclerview.widget.RecyclerView;
-
-public class CivilAdapter extends RecyclerView.Adapter<CivilAdapter.MyViewHolder> {
-
+public class ElectricalAdapter extends RecyclerView.Adapter<ElectricalAdapter.MyViewHolder> {
 
     Context context;
     String[] semname;
 
-    public CivilAdapter(Context context, String[] semname) {
+    public ElectricalAdapter(Context context, String[] semname) {
         this.context = context;
         this.semname = semname;
     }
-
     @NonNull
     @Override
-    public CivilAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ElectricalAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         LayoutInflater layoutInflater= LayoutInflater.from(context);
-        View view= layoutInflater.inflate(R.layout.civil_sem_card, parent, false);
-        return new MyViewHolder(view);
+        View view= layoutInflater.inflate(R.layout.electrical_sem_card, parent, false);
+        return new ElectricalAdapter.MyViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CivilAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ElectricalAdapter.MyViewHolder holder, int position) {
 
 
         holder.textView.setText(semname[position]);
@@ -52,7 +51,7 @@ public class CivilAdapter extends RecyclerView.Adapter<CivilAdapter.MyViewHolder
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            textView= itemView.findViewById(R.id.civil_sem_num);
+            textView= itemView.findViewById(R.id.electrical_sem_num);
 
 
         }
