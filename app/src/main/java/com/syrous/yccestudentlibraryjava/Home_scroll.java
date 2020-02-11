@@ -79,7 +79,7 @@ public class Home_scroll extends AppCompatActivity {
                 R.drawable.tower, R.drawable.tv,
                 R.drawable.crane, R.drawable.work, R.drawable.cpu};
 
-        String[] feature_name = { "Upload Resources", "Attendance", "Online Fee Payment", "ESE Answer sheets", "Exam Dorm Acceptance", "Class Schedule", "Logout"};
+        String[] feature_name = { "Upload Resources", "YCCE Moodle", "Online Fee Payment", "ESE Answer sheets", "Exam Dorm Acceptance", "Class Schedule", "Logout"};
 
         otherFeatures = new ArrayList<>();
 
