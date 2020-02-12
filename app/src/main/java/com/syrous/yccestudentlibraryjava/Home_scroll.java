@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,7 +48,7 @@ public class Home_scroll extends AppCompatActivity {
                /* Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();*/
 
-                Intent intent= new Intent(Home_scroll.this, CivilHOme.class);
+                Intent intent= new Intent(Home_scroll.this, ItHome.class);
                 startActivity(intent);
             }
         });

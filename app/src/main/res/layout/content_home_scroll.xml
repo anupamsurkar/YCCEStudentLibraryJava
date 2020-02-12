@@ -23,7 +23,7 @@
             android:paddingTop="25dp"
             android:text="Recents"
             android:textColor="@color/common_google_signin_btn_text_dark_focused"
-            android:textSize="36sp">
+            android:textSize="32sp">
 
         </TextView>
 
@@ -34,7 +34,7 @@
             android:paddingTop="25dp"
             android:text="Departments"
             android:textColor="@color/common_google_signin_btn_text_dark_focused"
-            android:textSize="36sp"
+            android:textSize="32sp"
             android:paddingBottom="10dp">
 
         </TextView>
@@ -57,7 +57,7 @@
             android:paddingTop="25dp"
             android:text="Other Features"
             android:textColor="@color/common_google_signin_btn_text_dark_focused"
-            android:textSize="36sp"
+            android:textSize="32sp"
             android:paddingBottom="10dp">
 
 

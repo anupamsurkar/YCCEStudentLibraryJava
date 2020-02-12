@@ -1,6 +1,7 @@
 package com.syrous.yccestudentlibraryjava;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -38,6 +40,7 @@ public class OfAdapter extends RecyclerView.Adapter<OfAdapter.ViewHolder> {
 
         holder.imageView.setImageResource(otherFeatures.get(position).getFeaturelogo());
         holder.textView.setText(otherFeatures.get(position).getFeaturename());
+
     }
 
     @Override
@@ -49,13 +52,14 @@ public class OfAdapter extends RecyclerView.Adapter<OfAdapter.ViewHolder> {
 
         ImageView imageView;
         TextView textView;
-
+        CardView cardView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             imageView= itemView.findViewById(R.id.otherfeatureslogo);
             textView= itemView.findViewById(R.id.featurename);
+            cardView = (CardView)itemView.findViewById(R.id.id_card);
 
         }
     }
