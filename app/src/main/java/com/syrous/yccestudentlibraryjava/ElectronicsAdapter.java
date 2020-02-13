@@ -1,11 +1,9 @@
 package com.syrous.yccestudentlibraryjava;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +23,7 @@ public class ElectronicsAdapter extends RecyclerView.Adapter<ElectronicsAdapter.
     public ElectronicsAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         LayoutInflater layoutInflater= LayoutInflater.from(context);
-        View view= layoutInflater.inflate(R.layout.electronics_sem_card, parent, false);
+        View view= layoutInflater.inflate(R.layout.ee_sem_card, parent, false);
         return new ElectronicsAdapter.MyViewHolder(view);
     }
 

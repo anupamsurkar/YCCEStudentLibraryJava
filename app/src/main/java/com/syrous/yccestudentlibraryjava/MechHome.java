@@ -15,7 +15,7 @@ public class MechHome extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mech_home);
+        setContentView(R.layout.me_activity_home);
 
         recyclerView= findViewById(R.id.mech_home_recycler);
 

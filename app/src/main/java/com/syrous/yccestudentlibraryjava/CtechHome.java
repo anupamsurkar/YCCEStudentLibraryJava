@@ -16,7 +16,7 @@ public class CtechHome extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_ctech_home);
+        setContentView(R.layout.ct_activity_home);
 
         recyclerView= findViewById(R.id.ctech_home_recycler);
 

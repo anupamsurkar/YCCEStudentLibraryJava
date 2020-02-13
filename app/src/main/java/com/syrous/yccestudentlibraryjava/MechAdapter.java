@@ -1,11 +1,9 @@
 package com.syrous.yccestudentlibraryjava;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +23,7 @@ public class MechAdapter extends RecyclerView.Adapter<MechAdapter.MyViewHolder> 
     public MechAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         LayoutInflater layoutInflater= LayoutInflater.from(context);
-        View view= layoutInflater.inflate(R.layout.mech_sem_card, parent, false);
+        View view= layoutInflater.inflate(R.layout.me_sem_card, parent, false);
         return new MechAdapter.MyViewHolder(view);
     }
 

@@ -15,7 +15,7 @@ public class EtcHome extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_etc_home);
+        setContentView(R.layout.et_activity_home);
 
         recyclerView= findViewById(R.id.etc_home_recycler);
 

@@ -16,7 +16,7 @@ public class CivilHOme extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_civil_home);
+        setContentView(R.layout.cv_activity_home);
 
         recyclerView= findViewById(R.id.civil_home_recycler);
 

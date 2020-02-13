@@ -16,7 +16,7 @@ public class ElectricalHome extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_electrical_home);
+        setContentView(R.layout.el_activity_home);
 
         recyclerView= findViewById(R.id.electrical_home_recycler);
 

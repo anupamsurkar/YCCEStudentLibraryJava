@@ -17,7 +17,7 @@ public class ItHome extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_it_home);
+        setContentView(R.layout.it_activity_home);
         recyclerView= findViewById(R.id.it_home_recycler);
 
         semname= getResources().getStringArray(R.array.semesters);

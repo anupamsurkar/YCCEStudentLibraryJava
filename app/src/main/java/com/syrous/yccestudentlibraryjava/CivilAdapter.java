@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.view.menu.MenuView;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class CivilAdapter extends RecyclerView.Adapter<CivilAdapter.MyViewHolder> {
@@ -26,7 +25,7 @@ public class CivilAdapter extends RecyclerView.Adapter<CivilAdapter.MyViewHolder
     public CivilAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         LayoutInflater layoutInflater= LayoutInflater.from(context);
-        View view= layoutInflater.inflate(R.layout.civil_sem_card, parent, false);
+        View view= layoutInflater.inflate(R.layout.cv_sem_card, parent, false);
         return new MyViewHolder(view);
     }
 
