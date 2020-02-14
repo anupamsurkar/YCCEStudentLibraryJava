@@ -9,21 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.el.ElectricalAdapter"></activity>
         <activity android:name=".ui.el.ElectricalHome" />
-        <activity android:name=".ui.ee.ElectronicsAdapter" />
         <activity android:name=".ui.ee.ElectronicsHome" />
-        <activity android:name=".ui.etc.EtcAdapter" />
         <activity android:name=".ui.etc.EtcHome" />
         <activity android:name=".ui.mech.MechHome" />
-        <activity android:name=".ui.mech.MechAdapter" />
-        <activity android:name=".ui.ctech.CtechAdapter" />
         <activity android:name=".ui.ctech.CtechHome" />
         <activity android:name=".ui.it.ItHome" />
-        <activity android:name=".ui.it.ItAdapter" />
-        <activity android:name=".ui.civil.CivilHOme" />
+        <activity android:name=".ui.civil.CivilHome" />
 
-        <activity android:name=".ui.home.HomeActivity"
+        <activity android:name=".ui.splash.SplashActivity"
             android:label="@string/ycce"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -32,7 +26,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.login.LoginActivity" />
+        <activity android:name=".ui.login.LoginActivity"/>
+        <activity android:name=".ui.home.HomeActivity" />
 
         <meta-data
             android:name="preloaded_fonts"

@@ -15,8 +15,10 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.Scopes;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.common.api.Scope;
 import com.google.android.gms.tasks.Task;
 import com.syrous.yccestudentlibraryjava.ui.home.HomeActivity;
 import com.syrous.yccestudentlibraryjava.R;
@@ -48,11 +50,12 @@ public class LoginFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_login, container, false);
 
         Log.d(TAG, "View Created !!!");
-
+        String serverClientId = getString(R.string.server_client_id);
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                                    .requestEmail()
-                                    .requestId()
-                                    .build();
+                .requestScopes(new Scope(Scopes.DRIVE_APPFOLDER))
+                .requestServerAuthCode(serverClientId)
+                .requestEmail()
+                .build();
 
         mClient = GoogleSignIn.getClient(getActivity(), gso);
 
@@ -69,7 +72,7 @@ public class LoginFragment extends Fragment {
     public void onStart() {
         super.onStart();
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getActivity()); // Check the Last Signed In User
-        updateUI(null);
+        updateUI(account);
     }
 
     public void signIn(){
@@ -94,6 +97,8 @@ public class LoginFragment extends Fragment {
                 Log.d(TAG, "UserID : "+account.getId());
                 Log.d(TAG, "UserEmail : "+account.getEmail());
                 Log.d(TAG, "UserToken : "+account.getIdToken());
+                Log.d(TAG, "UserAuthCode : "+account.getServerAuthCode());
+
 
                 updateUI(account);
             } catch (ApiException e) {
@@ -119,8 +124,7 @@ public class LoginFragment extends Fragment {
         else {
             //TODO : Move to The Next Screen
             Intent intent= new Intent(getActivity(), HomeActivity.class);
-                  startActivity(intent);
-
+            startActivity(intent);
         }
     }
 }

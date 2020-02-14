@@ -7,13 +7,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 
 import com.syrous.yccestudentlibraryjava.R;
+import com.syrous.yccestudentlibraryjava.ui.GenAdapter;
 
 public class ElectronicsHome extends AppCompatActivity {
 
-    RecyclerView recyclerView;
-    ElectronicsAdapter electronicsAdapter;
-
-    String[] semname;
+    private RecyclerView recyclerView;
+    private boolean isAdded = true;
+    private String[] semName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,12 +22,17 @@ public class ElectronicsHome extends AppCompatActivity {
 
         recyclerView= findViewById(R.id.electronics_home_recycler);
 
-        semname= getResources().getStringArray(R.array.semesters);
-
-        electronicsAdapter = new ElectronicsAdapter(ElectronicsHome.this , semname);
-
-        recyclerView.setAdapter(electronicsAdapter);
-
+        semName = getResources().getStringArray(R.array.semesters);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        setupAdapter();
+    }
+
+    private void setupAdapter(){
+        if(isAdded){
+            GenAdapter genAdapter = new GenAdapter(getApplicationContext(), semName,
+                    R.layout.ee_sem_card, R.id.electronics_sem_num);
+            recyclerView.setAdapter(genAdapter);
+            isAdded = false;
+        }
     }
 }

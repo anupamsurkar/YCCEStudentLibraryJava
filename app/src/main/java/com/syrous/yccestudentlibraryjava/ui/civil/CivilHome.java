@@ -1,4 +1,4 @@
-package com.syrous.yccestudentlibraryjava.ui.etc;
+package com.syrous.yccestudentlibraryjava.ui.civil;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -9,7 +9,7 @@ import android.os.Bundle;
 import com.syrous.yccestudentlibraryjava.R;
 import com.syrous.yccestudentlibraryjava.ui.GenAdapter;
 
-public class EtcHome extends AppCompatActivity {
+public class CivilHome extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private String[] semName;
@@ -18,9 +18,8 @@ public class EtcHome extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.et_activity_home);
-
-        recyclerView= findViewById(R.id.etc_home_recycler);
+        setContentView(R.layout.cv_activity_home);
+        recyclerView= findViewById(R.id.civil_home_recycler);
         semName = getResources().getStringArray(R.array.semesters);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         setupAdapter();
@@ -34,4 +33,6 @@ public class EtcHome extends AppCompatActivity {
             isAdded = false;
         }
     }
+
+
 }
