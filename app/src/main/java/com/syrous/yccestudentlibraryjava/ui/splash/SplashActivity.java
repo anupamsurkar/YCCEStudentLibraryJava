@@ -1,0 +1,16 @@
+package com.syrous.yccestudentlibraryjava.ui.splash;
+
+import androidx.fragment.app.Fragment;
+
+import com.syrous.yccestudentlibraryjava.ui.SingleFragmentActivity;
+
+public class SplashActivity extends SingleFragmentActivity {
+
+
+    @Override
+    protected Fragment createFragment() {
+        return SplashFragment.newInstance();
+    }
+
+
+}
