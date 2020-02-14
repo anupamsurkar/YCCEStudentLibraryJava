@@ -21,8 +21,7 @@ android {
         sourceCompatibility = 1.8
         targetCompatibility = 1.8
     }
-    sourceSets { main { res.srcDirs = ['src/main/res',
-                                       file('src/main/res/layout/mech').listFiles()] } }
+    sourceSets { main { res.srcDirs = ['src/main/res'] } }
 }
 
 dependencies {
