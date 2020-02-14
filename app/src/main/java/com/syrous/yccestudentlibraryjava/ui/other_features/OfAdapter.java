@@ -14,34 +14,31 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.syrous.yccestudentlibraryjava.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class OfAdapter extends RecyclerView.Adapter<OfAdapter.ViewHolder> {
 
-    ArrayList<OtherFeatures> otherFeatures;
+    private List<OtherFeatures> otherFeatures;
+    private Context context;
 
-    Context context;
-
-    public OfAdapter(Context context, ArrayList<OtherFeatures> otherFeatures)
-    {
+    public OfAdapter(Context context, List<OtherFeatures> otherFeatures) {
         this.context= context;
         this.otherFeatures = otherFeatures;
-
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.ofeaturerow, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.ofeaturerow,
+                parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
         holder.imageView.setImageResource(otherFeatures.get(position).getFeaturelogo());
         holder.textView.setText(otherFeatures.get(position).getFeaturename());
-
     }
 
     @Override
@@ -58,9 +55,9 @@ public class OfAdapter extends RecyclerView.Adapter<OfAdapter.ViewHolder> {
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            imageView= itemView.findViewById(R.id.otherfeatureslogo);
-            textView= itemView.findViewById(R.id.featurename);
-            cardView = (CardView)itemView.findViewById(R.id.id_card);
+            imageView= itemView.findViewById(R.id.other_features_logo);
+            textView= itemView.findViewById(R.id.feature_name);
+            cardView = itemView.findViewById(R.id.id_card);
 
         }
     }

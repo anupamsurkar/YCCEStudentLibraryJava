@@ -22,10 +22,7 @@
         <activity android:name=".ui.it.ItHome" />
         <activity android:name=".ui.it.ItAdapter" />
         <activity android:name=".ui.civil.CivilHOme" />
-        <activity
-            android:name=".ui.home.Home_scroll"
-            android:label="@string/ycce"
-            android:theme="@style/AppTheme.NoActionBar" />
+
         <activity android:name=".ui.home.HomeActivity"
             android:label="@string/ycce"
             android:theme="@style/AppTheme.NoActionBar">

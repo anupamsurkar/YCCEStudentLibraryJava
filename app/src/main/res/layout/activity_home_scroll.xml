@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".ui.home.Home_scroll"
+    tools:context=".ui.home.HomeActivity"
     android:tooltipText="Ycce Library">
 
     <com.google.android.material.appbar.AppBarLayout

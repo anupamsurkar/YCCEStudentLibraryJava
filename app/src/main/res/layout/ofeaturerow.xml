@@ -18,7 +18,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="95dp"
-            android:id="@+id/otherfeatureslogo"
+            android:id="@+id/other_features_logo"
             android:background="#F5F2F2"
             android:scaleType="centerInside"
             >
@@ -28,7 +28,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/featurename"
+            android:id="@+id/feature_name"
             android:textColor="@color/common_google_signin_btn_text_dark_focused"
             android:text="Android"
             android:textSize="13sp"
