@@ -16,8 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.syrous.yccestudentlibraryjava.R;
 import com.syrous.yccestudentlibraryjava.ui.departments.ModelDepartments;
 import com.syrous.yccestudentlibraryjava.ui.departments.DepartmentsAdapter;
-import com.syrous.yccestudentlibraryjava.ui.other_features.OfAdapter;
-import com.syrous.yccestudentlibraryjava.ui.other_features.ActivityOtherFeaturesHome;
+import com.syrous.yccestudentlibraryjava.ui.other_features.OFAdapter;
+import com.syrous.yccestudentlibraryjava.ui.other_features.ModelOF;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,11 +26,12 @@ import java.util.List;
  * Created By : Syrous
  * date : 6/2/20
  */
+
 public class FragmentHome extends Fragment {
 
     private List<ModelDepartments> oneDept;
-    private List<ActivityOtherFeaturesHome> activityOtherFeatureHomes;
-    private OfAdapter ofAdapter;
+    private List<ModelOF> modelOF;
+    private OFAdapter ofAdapter;
     private RecyclerView OfRecycler;
 
     public static FragmentHome newInstance(){
@@ -53,8 +54,6 @@ public class FragmentHome extends Fragment {
         oneDept.add(new ModelDepartments("Mechanical", R.drawable.work));
         oneDept.add(new ModelDepartments("IT", R.drawable.tv));
 
-
-
         RecyclerView mrv= v.findViewById(R.id.home_recycler);
 
         DepartmentsAdapter myAdapter = new DepartmentsAdapter(getActivity(), oneDept);
@@ -69,11 +68,11 @@ public class FragmentHome extends Fragment {
 
         String[] feature_name = { "Upload Resources", "Attendance", "Online Fee Payment", "ESE Answer sheets", "Exam Dorm Acceptance", "Class Schedule", "Logout"};
 
-        activityOtherFeatureHomes = new ArrayList<>();
+        modelOF = new ArrayList<>();
 
         for( int i= 0; i<feature_logos.length; i++){
-            ActivityOtherFeaturesHome oFeatures = new ActivityOtherFeaturesHome(feature_logos[i], feature_name[i]);
-            activityOtherFeatureHomes.add(oFeatures);
+            ModelOF oFeatures = new ModelOF(feature_logos[i], feature_name[i], "https://www.ycce.edu/");
+            modelOF.add(oFeatures);
         }
 
         LinearLayoutManager oLayoutManager= new LinearLayoutManager(getActivity(),
@@ -81,7 +80,7 @@ public class FragmentHome extends Fragment {
         OfRecycler.setLayoutManager(oLayoutManager);
         OfRecycler.setItemAnimator(new DefaultItemAnimator());
 
-        ofAdapter = new OfAdapter(getActivity(), activityOtherFeatureHomes);
+        ofAdapter = new OFAdapter(getActivity(), modelOF);
         OfRecycler.setAdapter(ofAdapter);
 
         return v;

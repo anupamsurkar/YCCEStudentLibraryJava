@@ -32,6 +32,7 @@ public class ActivityHome extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle(R.string.ycce_student_library);
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
@@ -65,7 +66,6 @@ public class ActivityHome extends AppCompatActivity {
                     .add(R.id.nav_host_fragment, fragment)
                     .commit();
         }
-
     }
 
     @Override
