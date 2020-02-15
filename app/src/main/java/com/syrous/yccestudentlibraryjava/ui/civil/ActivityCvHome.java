@@ -9,7 +9,7 @@ import android.os.Bundle;
 import com.syrous.yccestudentlibraryjava.R;
 import com.syrous.yccestudentlibraryjava.ui.GenAdapter;
 
-public class CivilHome extends AppCompatActivity {
+public class ActivityCvHome extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private String[] semName;

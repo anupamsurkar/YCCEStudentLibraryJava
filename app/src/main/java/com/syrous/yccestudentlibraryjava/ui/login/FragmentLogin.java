@@ -20,7 +20,7 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.Scope;
 import com.google.android.gms.tasks.Task;
-import com.syrous.yccestudentlibraryjava.ui.home.HomeActivity;
+import com.syrous.yccestudentlibraryjava.ui.home.ActivityHome;
 import com.syrous.yccestudentlibraryjava.R;
 
 import static com.syrous.yccestudentlibraryjava.Constants.GlobalConstants.TAG;
@@ -30,7 +30,7 @@ import static com.syrous.yccestudentlibraryjava.Constants.GlobalConstants.TAG;
  * date : 26/1/20
  */
 
-public class LoginFragment extends Fragment {
+public class FragmentLogin extends Fragment {
 
 
     public static final int RC_SIGN_IN = 9001;
@@ -38,8 +38,8 @@ public class LoginFragment extends Fragment {
     private GoogleSignInClient mClient;
 
 
-    public static LoginFragment newInstance(){
-        return new LoginFragment();
+    public static FragmentLogin newInstance(){
+        return new FragmentLogin();
     }
 
     @Nullable
@@ -123,7 +123,7 @@ public class LoginFragment extends Fragment {
         }
         else {
             //TODO : Move to The Next Screen
-            Intent intent= new Intent(getActivity(), HomeActivity.class);
+            Intent intent= new Intent(getActivity(), ActivityHome.class);
             startActivity(intent);
         }
     }

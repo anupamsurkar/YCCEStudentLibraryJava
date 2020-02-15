@@ -1,12 +1,12 @@
 package com.syrous.yccestudentlibraryjava.ui.departments;
 
-public class Departments {
+public class ModelDepartments {
 
     private String dept;
     private String category;
     private int thumbnail;
 
-    public Departments(String dept, int thumbnail) {
+    public ModelDepartments(String dept, int thumbnail) {
         this.dept = dept;
         this.thumbnail= thumbnail;
     }

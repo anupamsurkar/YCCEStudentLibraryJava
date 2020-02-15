@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.syrous.yccestudentlibraryjava.ui.login.LoginActivity;
+import com.syrous.yccestudentlibraryjava.ui.login.ActivityLogin;
 import com.syrous.yccestudentlibraryjava.R;
 
 import static com.syrous.yccestudentlibraryjava.Constants.GlobalConstants.TAG;
@@ -22,11 +22,11 @@ import static com.syrous.yccestudentlibraryjava.Constants.GlobalConstants.TAG;
  * date : 6/2/20
  */
 
-public class SplashFragment extends Fragment {
+public class FragmentSplash extends Fragment {
 
 
-    public static SplashFragment newInstance(){
-        return new SplashFragment();
+    public static FragmentSplash newInstance(){
+        return new FragmentSplash();
     }
 
     @Nullable
@@ -36,8 +36,8 @@ public class SplashFragment extends Fragment {
 
 
         new Handler().postDelayed(() -> {
-           Intent intent = LoginActivity.newIntent(getActivity());
-            Log.d(TAG,"LoginActivity Called !");
+           Intent intent = ActivityLogin.newIntent(getActivity());
+            Log.d(TAG,"ActivityLogin Called !");
             startActivity(intent);
             getActivity().finish();
         },3000);

@@ -14,10 +14,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.syrous.yccestudentlibraryjava.R;
-import com.syrous.yccestudentlibraryjava.ui.departments.Departments;
+import com.syrous.yccestudentlibraryjava.ui.departments.ModelDepartments;
 import com.syrous.yccestudentlibraryjava.ui.departments.DepartmentsAdapter;
 import com.syrous.yccestudentlibraryjava.ui.other_features.OfAdapter;
-import com.syrous.yccestudentlibraryjava.ui.other_features.OtherFeatures;
+import com.syrous.yccestudentlibraryjava.ui.other_features.ActivityOtherFeaturesHome;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,15 +26,15 @@ import java.util.List;
  * Created By : Syrous
  * date : 6/2/20
  */
-public class HomeFragment extends Fragment {
+public class FragmentHome extends Fragment {
 
-    private List<Departments> oneDept;
-    private List<OtherFeatures> otherFeatures;
+    private List<ModelDepartments> oneDept;
+    private List<ActivityOtherFeaturesHome> activityOtherFeatureHomes;
     private OfAdapter ofAdapter;
     private RecyclerView OfRecycler;
 
-    public static HomeFragment newInstance(){
-        return new HomeFragment();
+    public static FragmentHome newInstance(){
+        return new FragmentHome();
     }
 
     @Nullable
@@ -44,14 +44,14 @@ public class HomeFragment extends Fragment {
 
 
         oneDept= new ArrayList<>();
-        oneDept.add(new Departments("First Year", R.drawable.baby));
-        oneDept.add(new Departments("C.Tech", R.drawable.api));
-        oneDept.add(new Departments("Civil", R.drawable.crane));
-        oneDept.add(new Departments("Electrical", R.drawable.electricmotor));
-        oneDept.add(new Departments("ETC", R.drawable.tower));
-        oneDept.add(new Departments("Electronics", R.drawable.cpu));
-        oneDept.add(new Departments("Mechanical", R.drawable.work));
-        oneDept.add(new Departments("IT", R.drawable.tv));
+        oneDept.add(new ModelDepartments("First Year", R.drawable.baby));
+        oneDept.add(new ModelDepartments("C.Tech", R.drawable.api));
+        oneDept.add(new ModelDepartments("Civil", R.drawable.crane));
+        oneDept.add(new ModelDepartments("Electrical", R.drawable.electricmotor));
+        oneDept.add(new ModelDepartments("ETC", R.drawable.tower));
+        oneDept.add(new ModelDepartments("Electronics", R.drawable.cpu));
+        oneDept.add(new ModelDepartments("Mechanical", R.drawable.work));
+        oneDept.add(new ModelDepartments("IT", R.drawable.tv));
 
 
 
@@ -69,11 +69,11 @@ public class HomeFragment extends Fragment {
 
         String[] feature_name = { "Upload Resources", "Attendance", "Online Fee Payment", "ESE Answer sheets", "Exam Dorm Acceptance", "Class Schedule", "Logout"};
 
-        otherFeatures = new ArrayList<>();
+        activityOtherFeatureHomes = new ArrayList<>();
 
         for( int i= 0; i<feature_logos.length; i++){
-            OtherFeatures oFeatures = new OtherFeatures(feature_logos[i], feature_name[i]);
-            otherFeatures.add(oFeatures);
+            ActivityOtherFeaturesHome oFeatures = new ActivityOtherFeaturesHome(feature_logos[i], feature_name[i]);
+            activityOtherFeatureHomes.add(oFeatures);
         }
 
         LinearLayoutManager oLayoutManager= new LinearLayoutManager(getActivity(),
@@ -81,7 +81,7 @@ public class HomeFragment extends Fragment {
         OfRecycler.setLayoutManager(oLayoutManager);
         OfRecycler.setItemAnimator(new DefaultItemAnimator());
 
-        ofAdapter = new OfAdapter(getActivity(), otherFeatures);
+        ofAdapter = new OfAdapter(getActivity(), activityOtherFeatureHomes);
         OfRecycler.setAdapter(ofAdapter);
 
         return v;

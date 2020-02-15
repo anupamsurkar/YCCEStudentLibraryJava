@@ -13,17 +13,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.syrous.yccestudentlibraryjava.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class OfAdapter extends RecyclerView.Adapter<OfAdapter.ViewHolder> {
 
-    private List<OtherFeatures> otherFeatures;
+    private List<ActivityOtherFeaturesHome> activityOtherFeatureHomes;
     private Context context;
 
-    public OfAdapter(Context context, List<OtherFeatures> otherFeatures) {
+    public OfAdapter(Context context, List<ActivityOtherFeaturesHome> activityOtherFeatureHomes) {
         this.context= context;
-        this.otherFeatures = otherFeatures;
+        this.activityOtherFeatureHomes = activityOtherFeatureHomes;
     }
 
     @NonNull
@@ -37,13 +36,13 @@ public class OfAdapter extends RecyclerView.Adapter<OfAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.imageView.setImageResource(otherFeatures.get(position).getFeaturelogo());
-        holder.textView.setText(otherFeatures.get(position).getFeaturename());
+        holder.imageView.setImageResource(activityOtherFeatureHomes.get(position).getFeaturelogo());
+        holder.textView.setText(activityOtherFeatureHomes.get(position).getFeaturename());
     }
 
     @Override
     public int getItemCount() {
-        return otherFeatures.size();
+        return activityOtherFeatureHomes.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

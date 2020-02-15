@@ -1,7 +1,6 @@
 package com.syrous.yccestudentlibraryjava.ui.home;
 
 import android.os.Bundle;
-import android.view.Menu;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.Toolbar;
@@ -18,14 +17,14 @@ import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.navigation.NavigationView;
 import com.syrous.yccestudentlibraryjava.R;
 
-public class HomeActivity extends AppCompatActivity {
+public class ActivityHome extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConf;
     private ActionBarDrawerToggle mDrawerToggle;
 
 
     public Fragment createFragment() {
-        return HomeFragment.newInstance();
+        return FragmentHome.newInstance();
     }
 
     @Override

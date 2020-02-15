@@ -4,12 +4,12 @@ import androidx.fragment.app.Fragment;
 
 import com.syrous.yccestudentlibraryjava.ui.SingleFragmentActivity;
 
-public class SplashActivity extends SingleFragmentActivity {
+public class ActivitySplash extends SingleFragmentActivity {
 
 
     @Override
     protected Fragment createFragment() {
-        return SplashFragment.newInstance();
+        return FragmentSplash.newInstance();
     }
 
 
