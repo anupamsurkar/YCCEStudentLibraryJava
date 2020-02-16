@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ui.pager.ActivityPager"></activity>
         <activity android:name=".ui.el.ActivityElHome" />
         <activity android:name=".ui.ee.ActivityEeHome" />
         <activity android:name=".ui.etc.ActivityEtHome" />
@@ -16,8 +17,8 @@
         <activity android:name=".ui.ctech.ActivityCtHome" />
         <activity android:name=".ui.it.ActivityItHome" />
         <activity android:name=".ui.civil.ActivityCvHome" />
-
-        <activity android:name=".ui.splash.ActivitySplash"
+        <activity
+            android:name=".ui.splash.ActivitySplash"
             android:label="@string/ycce"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -26,7 +27,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.login.ActivityLogin"/>
+        <activity android:name=".ui.login.ActivityLogin" />
         <activity android:name=".ui.home.ActivityHome" />
 
         <meta-data
