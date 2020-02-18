@@ -36,7 +36,7 @@ public class GenAdapter extends RecyclerView.Adapter<GenViewHolder> {
     public GenViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(layoutResId, parent, false);
-        return new GenViewHolder(view, textViewId);
+        return new GenViewHolder(view, textViewId, context);
     }
 
     @Override

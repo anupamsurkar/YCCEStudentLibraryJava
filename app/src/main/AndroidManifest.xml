@@ -9,15 +9,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.el.ElectricalHome" />
-        <activity android:name=".ui.ee.ElectronicsHome" />
-        <activity android:name=".ui.etc.EtcHome" />
-        <activity android:name=".ui.mech.MechHome" />
-        <activity android:name=".ui.ctech.CtechHome" />
-        <activity android:name=".ui.it.ItHome" />
-        <activity android:name=".ui.civil.CivilHome" />
-
-        <activity android:name=".ui.splash.SplashActivity"
+        <activity android:name=".ui.pager.ActivityPager"></activity>
+        <activity android:name=".ui.el.ActivityElHome" />
+        <activity android:name=".ui.ee.ActivityEeHome" />
+        <activity android:name=".ui.etc.ActivityEtHome" />
+        <activity android:name=".ui.mech.ActivityMechHome" />
+        <activity android:name=".ui.ctech.ActivityCtHome" />
+        <activity android:name=".ui.it.ActivityItHome" />
+        <activity android:name=".ui.civil.ActivityCvHome" />
+        <activity
+            android:name=".ui.splash.ActivitySplash"
             android:label="@string/ycce"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -26,8 +27,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.login.LoginActivity"/>
-        <activity android:name=".ui.home.HomeActivity" />
+        <activity android:name=".ui.login.ActivityLogin" />
+        <activity android:name=".ui.home.ActivityHome" />
 
         <meta-data
             android:name="preloaded_fonts"

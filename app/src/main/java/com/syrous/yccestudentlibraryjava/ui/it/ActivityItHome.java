@@ -1,4 +1,4 @@
-package com.syrous.yccestudentlibraryjava.ui.etc;
+package com.syrous.yccestudentlibraryjava.ui.it;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -9,7 +9,7 @@ import android.os.Bundle;
 import com.syrous.yccestudentlibraryjava.R;
 import com.syrous.yccestudentlibraryjava.ui.GenAdapter;
 
-public class EtcHome extends AppCompatActivity {
+public class ActivityItHome extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private String[] semName;
@@ -18,9 +18,9 @@ public class EtcHome extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.et_activity_home);
 
-        recyclerView= findViewById(R.id.etc_home_recycler);
+        setContentView(R.layout.it_activity_home);
+        recyclerView= findViewById(R.id.it_home_recycler);
         semName = getResources().getStringArray(R.array.semesters);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         setupAdapter();
@@ -29,7 +29,7 @@ public class EtcHome extends AppCompatActivity {
     private void setupAdapter(){
         if(isAdded){
             GenAdapter genAdapter = new GenAdapter(getApplicationContext(), semName,
-                    R.layout.cv_sem_card, R.id.civil_sem_num);
+                    R.layout.it_sem_card, R.id.it_sem_num);
             recyclerView.setAdapter(genAdapter);
             isAdded = false;
         }

@@ -7,15 +7,15 @@ import androidx.fragment.app.Fragment;
 
 import com.syrous.yccestudentlibraryjava.ui.SingleFragmentActivity;
 
-public class LoginActivity extends SingleFragmentActivity {
+public class ActivityLogin extends SingleFragmentActivity {
 
 
     @Override
     protected Fragment createFragment() {
-        return LoginFragment.newInstance();
+        return FragmentLogin.newInstance();
     }
 
     public static Intent newIntent(Context packageContext){
-        return new Intent(packageContext, LoginActivity.class);
+        return new Intent(packageContext, ActivityLogin.class);
     }
 }
