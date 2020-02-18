@@ -3,6 +3,8 @@
     <string name="ycce_student_library">YCCE Student Library</string>
     <string name="login_screen_title">SignUp with Google</string>
     <string name="ycce">YCCE Student Library</string>
+
+
     <string name="ctech">Computer Technology</string>
     <string name="electrical">Electrical Engineering</string>
     <string name="electronics">Electronics Engineering</string>
@@ -10,6 +12,7 @@
     <string name="civil">Civil Engineering</string>
     <string name="mechanical">Mechanical Engineering</string>
     <string name="it">Information Technology</string>
+
 
     <string-array name="semesters">
         <item>Semester-III</item>
@@ -19,4 +22,29 @@
         <item>Semester-VII</item>
         <item>Semester-VIII</item>
     </string-array>
+
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Devanshu Vaidya</string>
+    <string name="nav_header_subtitle">vaidyadevanshu@gmail.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+
+
+    <string name="menu_profile">Profile</string>
+    <string name="menu_about_us">About Us</string>
+    <string name="menu_contact_us">Contact Us</string>
+    <string name="menu_logout">Logout</string>
+
+
+    <string name="recent">Recent</string>
+    <string name="department">Department</string>
+    <string name="other_features">Other Features</string>
+
+    
+    <string name="server_client_id">201887389567-faapcjfh1te96o55t9t1fgt2sb1ue7ic.apps.googleusercontent.com</string>
+    
+    
+    
+
 </resources>
