@@ -17,6 +17,7 @@ public class User {
     private static User sUser;
     private ModelUser user;
     private Context context;
+    private String serverAuthCode;
     private GoogleSignInAccount account;
     private boolean isRegistered = false;
 
@@ -24,6 +25,13 @@ public class User {
         this.context = context.getApplicationContext();
     }
 
+    public void setAccount(GoogleSignInAccount account) {
+        this.account = account;
+    }
+
+    public GoogleSignInAccount getAccount() {
+        return account;
+    }
 
     public static User get(Context context){
         if(sUser == null){
@@ -37,6 +45,10 @@ public class User {
         this.isRegistered = true;
         SharedPreferences prefs = context.getSharedPreferences(GlobalConstants.LOGGED_USER, 0);
         prefs.edit().putBoolean(GlobalConstants.LOGGED_USER, isRegistered).apply();
+    }
+
+    public ModelUser getUser() {
+        return user;
     }
 
     public boolean isRegistered() {

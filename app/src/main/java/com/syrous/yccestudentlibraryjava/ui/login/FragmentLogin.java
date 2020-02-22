@@ -77,10 +77,9 @@ public class FragmentLogin extends Fragment {
     public void onStart() {
         super.onStart();
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getActivity()); // Check the Last Signed In ModelUser
-        ModelUser modelUser = new ModelUser(account.getId(), account.getDisplayName(),
-                                account.getEmail(), account.getServerAuthCode());
+        ModelUser modelUser = new ModelUser(account.getId(), account.getDisplayName(), account.getEmail());
         User.get(getActivity()).registerUser(modelUser);
-
+        User.get(getActivity()).setAccount(account);
         updateUI(account);
     }
 
@@ -103,8 +102,9 @@ public class FragmentLogin extends Fragment {
             try{
                 GoogleSignInAccount account = task.getResult(ApiException.class);
                 ModelUser modelUser = new ModelUser(account.getId(), account.getDisplayName(),
-                        account.getEmail(), account.getServerAuthCode());
+                                        account.getEmail());
                 User.get(getActivity()).registerUser(modelUser);
+                User.get(getActivity()).setAccount(account);
 
                 updateUI(account);
             } catch (ApiException e) {

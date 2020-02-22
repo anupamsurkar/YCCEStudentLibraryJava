@@ -2,6 +2,8 @@ package com.syrous.yccestudentlibraryjava.data;
 
 import android.content.Context;
 
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+
 /**
  * Created By : Syrous
  * date : 22/2/20
@@ -12,17 +14,11 @@ public class ModelUser {
     private String userName;
     private String userId;
     private String emailId;
-    private String serverAuthCode;
 
-    public ModelUser(String userId, String userName, String emailId, String serverAuthCode){
+    public ModelUser(String userId, String userName, String emailId){
         this.userId = userId;
         this.userName = userName;
         this.emailId = emailId;
-        this.serverAuthCode = serverAuthCode;
-    }
-
-    public String getServerAuthCode() {
-        return serverAuthCode;
     }
 
     public String getUserName() {
