@@ -80,6 +80,7 @@ public class FragmentLogin extends Fragment {
         ModelUser modelUser = new ModelUser(account.getId(), account.getDisplayName(),
                                 account.getEmail(), account.getServerAuthCode());
         User.get(getActivity()).registerUser(modelUser);
+
         updateUI(account);
     }
 
