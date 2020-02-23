@@ -10,4 +10,6 @@ public class GlobalConstants {
 
     public static final String LOGGED_USER = "LOGGED_IN_USER";
 
+    public static final String UPLOAD_PATH = "UPLOAD_PATH";
+
 }

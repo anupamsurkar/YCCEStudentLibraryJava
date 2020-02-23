@@ -1,8 +1,5 @@
 package com.syrous.yccestudentlibraryjava.data;
 
-import android.content.Context;
-
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 
 /**
  * Created By : Syrous

@@ -1,5 +1,6 @@
 package com.syrous.yccestudentlibraryjava.ui.departments;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -106,6 +107,7 @@ class DepartmentHolder extends RecyclerView.ViewHolder{
         dept_title.setText(text);
     }
 
+    @SuppressLint("ResourceType")
     public void setThumbnail(@IdRes int imageId){
         dept_thumbnail.setImageResource(imageId);
     }
