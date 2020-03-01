@@ -12,4 +12,12 @@ public class GlobalConstants {
 
     public static final String UPLOAD_PATH = "UPLOAD_PATH";
 
+    public static final String UPLOAD_SESSION = "UPLOAD_SESSION_DETAILS";
+
+    public static final String UPLOAD_SESSION_KEY = "UPLOAD_SESSION_URI";
+
+    public static final String UPLOAD_SESSION_SAVED = "UPLOAD_SESSION_SAVED";
+
+    public static final String UPLOAD_REFERENCE = "UPLOAD_REF";
+
 }
