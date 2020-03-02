@@ -24,10 +24,10 @@ public class ActivityPager extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_page);
 
-        toolbar = (Toolbar) findViewById(R.id.myToolbar);
+        toolbar =  findViewById(R.id.myToolbar);
         toolbar.setTitle(" ");
-        tabLayout = (TabLayout) findViewById(R.id.tablayout);
-        viewPager = (ViewPager) findViewById(R.id.myViewPager);
+        tabLayout =  findViewById(R.id.tablayout);
+        viewPager =  findViewById(R.id.myViewPager);
 
         setSupportActionBar(toolbar);
         setupViewPager(viewPager);

@@ -33,10 +33,11 @@ public final class RxEventBus {
     private Map<Object, CompositeDisposable> subscriptionMap = new HashMap<>();
 
     public static final int _UPLOAD_SUBJECT = 1;
-    public static final int _ANOTHER_SUBJECT = 2;
+    public static final int _ERROR_SUBJECT = 2;
+    public static final int _PROGRESS_SUBJECT = 3;
 
     @Retention(RetentionPolicy.SOURCE)
-    @IntDef({_UPLOAD_SUBJECT, _ANOTHER_SUBJECT})
+    @IntDef({_UPLOAD_SUBJECT, _ERROR_SUBJECT, _PROGRESS_SUBJECT})
     @interface Subject {
 
     }
@@ -57,7 +58,7 @@ public final class RxEventBus {
         PublishSubject<Object> subject = subjectMap.get(subjectCode);
         if(subject == null){
             subject = PublishSubject.create();
-            //subject.subscribeOn(AndroidSchedulers.from());
+            subject.subscribeOn(AndroidSchedulers.mainThread());
             subjectMap.put(subjectCode, subject);
         }
         return subject;

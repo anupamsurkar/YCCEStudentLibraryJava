@@ -1,37 +1,33 @@
 package com.syrous.yccestudentlibraryjava.utils;
 
-import android.app.IntentService;
-import android.app.Service;
-import android.app.job.JobParameters;
-import android.app.job.JobService;
+
+import android.app.Notification;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.Uri;
-import android.os.FileUtils;
-import android.os.HandlerThread;
-import android.os.IBinder;
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.JobIntentService;
+import androidx.core.app.NotificationCompat;
 
-import com.google.android.gms.auth.api.signin.internal.Storage;
-import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.FirebaseApiNotAvailableException;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.core.FirestoreClient;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.OnPausedListener;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.google.firestore.v1.WriteResult;
 import com.syrous.yccestudentlibraryjava.Constants.GlobalConstants;
+import com.syrous.yccestudentlibraryjava.ui.upload.ActivityUpload;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -42,8 +38,7 @@ import java.util.Objects;
  * date : 16/2/20
  */
 
-public class UploadUtils extends IntentService {
-
+public class UploadUtils extends JobIntentService {
 
     private static final String TAG = "UploadService";
     private static final String NAME_FIELD =  "uploaded-by";
@@ -52,14 +47,16 @@ public class UploadUtils extends IntentService {
     private static final String EXAM_FIELD = "exam";
     private static final String DEPARTMENT_FIELD = "department";
     private static final String URL_FIELD = "download-url";
+    private static final String COLLECTION_FIELD = "reviewPapers";
+    private static final String NOTIFICATION_CHANNEL = "Upload_channel";
 
     private FirebaseStorage storage = FirebaseStorage.getInstance();
     private StorageReference refs = storage.getReference();
     private UploadTask uploadTask;
     private boolean mSaved = false;
-    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private FirebaseFirestore db;
     public UploadUtils() {
-        super(TAG);
+
     }
 
     public static Intent newIntent(Context context, String path, Uri data){
@@ -73,36 +70,43 @@ public class UploadUtils extends IntentService {
     public void onCreate() {
         super.onCreate();
         if(!isNetworkAvailableAndConnected()){
-            //TODO: Inform Ui Network in not available
+            String netError = "NETWORK_NOT_CONNECTED";
+            RxEventBus.getBus(getApplicationContext()).publish(RxEventBus._ERROR_SUBJECT, netError); // Inform Ui Network in not available
         }
+        Intent notificationIntent = ActivityUpload.newIntent(this);
+        PendingIntent pi = PendingIntent.getActivity(this, 0, notificationIntent,0);
+        Notification notification = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL)
+                                        .setContentTitle("Paper Uploading")
+                                        .setContentText("")
+                                        .setContentIntent(pi)
+                                        .build();
     }
 
     @Override
-    protected void onHandleIntent(@Nullable Intent intent) {
-        if(!isNetworkAvailableAndConnected()){
-            //TODO : create broadcast receiver at frontend to receive signals.
-            return;
-        }
-
+    protected void onHandleWork(@NonNull Intent intent) {
+        db = FirebaseFirestore.getInstance();
         String path = Objects.requireNonNull(intent).getStringExtra(GlobalConstants.UPLOAD_PATH);
         assert path != null;
         if(path.isEmpty()){
-            //TODO : generate message of error occurred and inform ui to operate.
+            String pathError = "PATH_NOT_FOUND";
+            RxEventBus.getBus(getApplicationContext()).publish(RxEventBus._ERROR_SUBJECT, pathError); // generates message of error occurred and inform ui path not found.
             return;
         }
-
 
         Uri filePath = intent.getData();
         uploadTask = refs.putFile(Objects.requireNonNull(filePath));
         uploadTask.addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                //TODO : generate message of error occurred and inform ui to operate.
+                String firebaseError = "FIREBASE_ERROR";
+                RxEventBus.getBus(getApplicationContext()).publish(RxEventBus._ERROR_SUBJECT, firebaseError); // generates message of error occurred and inform ui to operate.
             }
-        }).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+        })
+                .addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                //TODO : generate message of success, task downloadUrl and store it in database and fireStore and inform ui to move to next state.
+                // TODO : Parse path and attack this utility to ui
+                String parsePath = path;
                 Map<String, Object>data = new HashMap<>();
                 data.put(FILE_TITLE_FIELD,"");
                 data.put(EXAM_FIELD,"");
@@ -111,12 +115,17 @@ public class UploadUtils extends IntentService {
                 data.put(DATE_FIELD, "");
                 data.put(URL_FIELD, "");
 
-                
+               db.collection(path).add(data).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                   @Override
+                   public void onComplete(@NonNull Task<DocumentReference> task) {
+                       String success = "DOCUMENT_UPLOADED_TO_FIRESTORE";
+                        RxEventBus.getBus(getApplicationContext()).publish(RxEventBus._PROGRESS_SUBJECT, success); // generate message of success, task downloadUrl and store it in database and fireStore and inform ui to move to next state.
+                   }
+               });
             }
         }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
-                //TODO : To inform ui about progress.
                 double progress = taskSnapshot.getBytesTransferred();
                 Uri uploadSessionUri = taskSnapshot.getUploadSessionUri();
                 if(uploadSessionUri != null && !mSaved){
@@ -127,26 +136,33 @@ public class UploadUtils extends IntentService {
                          .apply();
                 }
                 long bytesToUpload = taskSnapshot.getTotalByteCount();
+
+                RxEventBus.getBus(getApplicationContext()).publish(RxEventBus._PROGRESS_SUBJECT, progress); // To inform ui about progress.
             }
-        }
-        ).addOnPausedListener(taskSnapshot -> {
-            //TODO : To inform ui, task is paused.
+        }).addOnPausedListener(taskSnapshot -> {
             SharedPreferences prefs = getSharedPreferences(GlobalConstants.UPLOAD_SESSION, 0);
             prefs.edit()
                     .putString(GlobalConstants.UPLOAD_REFERENCE, refs.toString())
                     .apply();
+
+            String pausedUpload = "UPLOAD_PAUSED";
+            RxEventBus.getBus(getApplicationContext()).publish(RxEventBus._PROGRESS_SUBJECT, pausedUpload); // To inform ui, task is paused.
         });
     }
 
+
+    @Override
+    public boolean onStopCurrentWork() {
+        return super.onStopCurrentWork();
+    }
 
     private boolean isNetworkAvailableAndConnected() {
         ConnectivityManager cm =
                 (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
 
-        boolean isNetworkAvailable = cm.getActiveNetworkInfo() != null;
-        boolean isNetworkConnected = isNetworkAvailable &&
-                cm.getActiveNetworkInfo().isConnected();
+        boolean isNetworkAvailable = Objects.requireNonNull(cm).getActiveNetworkInfo() != null;
 
-        return isNetworkConnected;
+        return isNetworkAvailable &&
+                Objects.requireNonNull(cm.getActiveNetworkInfo()).isConnected();
     }
 }

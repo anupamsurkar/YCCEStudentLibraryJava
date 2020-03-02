@@ -16,12 +16,6 @@ import com.syrous.yccestudentlibraryjava.R;
  */
 public class MseFragment extends Fragment {
 
-
-    public MseFragment() {
-        // Required empty public constructor
-    }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
