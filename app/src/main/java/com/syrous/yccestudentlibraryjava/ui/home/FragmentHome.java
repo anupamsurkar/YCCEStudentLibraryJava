@@ -1,9 +1,11 @@
 package com.syrous.yccestudentlibraryjava.ui.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.syrous.yccestudentlibraryjava.R;
+import com.syrous.yccestudentlibraryjava.UploadActivity;
 import com.syrous.yccestudentlibraryjava.ui.departments.ModelDepartments;
 import com.syrous.yccestudentlibraryjava.ui.departments.DepartmentsAdapter;
 import com.syrous.yccestudentlibraryjava.ui.other_features.OFAdapter;
@@ -34,6 +37,10 @@ public class FragmentHome extends Fragment {
     private OFAdapter ofAdapter;
     private RecyclerView OfRecycler;
 
+   Button upload;
+
+
+
     public static FragmentHome newInstance(){
         return new FragmentHome();
     }
@@ -41,8 +48,15 @@ public class FragmentHome extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_home_scroll, container, false);
 
+
+
+
+
+
+
+
+        View v = inflater.inflate(R.layout.fragment_home_scroll, container, false);
 
         oneDept= new ArrayList<>();
         oneDept.add(new ModelDepartments("First Year", R.drawable.baby));
@@ -84,5 +98,13 @@ public class FragmentHome extends Fragment {
         OfRecycler.setAdapter(ofAdapter);
 
         return v;
+
+
+
+
+
     }
+
+
+
 }
