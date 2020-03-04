@@ -39,10 +39,9 @@
 
     <include
         layout="@layout/activity_fragment_nav_host"
-        android:layout_height="855dp"
-        />
+        android:layout_height="855dp" />
 
-<!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+    <!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
 <!--        android:id="@+id/fab"-->
 <!--        android:layout_width="wrap_content"-->
 <!--        android:layout_height="wrap_content"-->

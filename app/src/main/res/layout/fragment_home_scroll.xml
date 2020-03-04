@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".ui.home.ActivityHome"
+    tools:context=".ui.home.HomeActivity"
     tools:showIn="@layout/activity_home_scroll">
 
     <LinearLayout
@@ -61,6 +61,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/recycler_other_features"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="upload"
+            android:id="@+id/upload_button"/>
 
     </LinearLayout>
 
