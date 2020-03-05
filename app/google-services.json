@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "201887389567",
+    "firebase_url": "https://student-library-266318.firebaseio.com",
+    "project_id": "student-library-266318",
+    "storage_bucket": "student-library-266318.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:201887389567:android:3c42c82b2f6c206e1cac4a",
+        "android_client_info": {
+          "package_name": "com.syrous.yccestudentlibraryjava"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "201887389567-h1grfqn1beig665299g99t2j3rjd2c8p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.syrous.yccestudentlibraryjava",
+            "certificate_hash": "2fd22b17d4d4b83972bb015a2a8a3ea5cbd0f41a"
+          }
+        },
+        {
+          "client_id": "201887389567-faapcjfh1te96o55t9t1fgt2sb1ue7ic.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyABaAX0OY_jo8rgqggTbuWHN7AZpzGBhO0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "201887389567-26dmsov6tvquhuaecvdpu8ij32o0kib4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

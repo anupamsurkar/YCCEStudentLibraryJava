@@ -29,7 +29,7 @@ public class ActivityEtHome extends AppCompatActivity {
     private void setupAdapter(){
         if(isAdded){
             GenAdapter genAdapter = new GenAdapter(getApplicationContext(), semName,
-                    R.layout.cv_sem_card, R.id.civil_sem_num);
+                    R.layout.et_sem_card, R.id.etc_sem_num);
             recyclerView.setAdapter(genAdapter);
             isAdded = false;
         }

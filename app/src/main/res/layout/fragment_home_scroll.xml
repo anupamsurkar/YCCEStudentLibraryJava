@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".ui.home.HomeActivity"
+    tools:context=".ui.home.ActivityHome"
     tools:showIn="@layout/activity_home_scroll">
 
     <LinearLayout
@@ -32,10 +32,10 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_bold"
             android:paddingTop="25dp"
+            android:paddingBottom="10dp"
             android:text="@string/department"
             android:textColor="@color/common_google_signin_btn_text_dark_focused"
-            android:textSize="32sp"
-            android:paddingBottom="10dp">
+            android:textSize="32sp">
 
         </TextView>
 
@@ -46,16 +46,32 @@
             android:layout_marginBottom="3dp"
             android:overScrollMode="never"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_bold"
-            android:paddingTop="25dp"
-            android:text="@string/other_features"
-            android:textColor="@color/common_google_signin_btn_text_dark_focused"
-            android:textSize="32sp"
-            android:paddingBottom="10dp"/>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_bold"
+                android:paddingTop="25dp"
+                android:paddingBottom="10dp"
+                android:text="@string/other_features"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                android:textSize="32sp" />
+
+            <Button
+                android:id="@+id/more_features"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="18dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="20dp"
+                android:background="@drawable/more"
+                android:padding="10dp" />
+
+        </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="wrap_content"

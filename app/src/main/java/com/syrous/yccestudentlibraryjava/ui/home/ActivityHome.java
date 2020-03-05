@@ -25,6 +25,7 @@ import com.syrous.yccestudentlibraryjava.R;
 import com.syrous.yccestudentlibraryjava.UploadActivity;
 import com.syrous.yccestudentlibraryjava.ui.about_us.FragmentAboutUs;
 import com.syrous.yccestudentlibraryjava.ui.contact_us.FragmentContactUs;
+import com.syrous.yccestudentlibraryjava.ui.other_features.MoreFeatures;
 import com.syrous.yccestudentlibraryjava.ui.profile.FragmentProfile;
 
 public class ActivityHome extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -97,9 +98,13 @@ public class ActivityHome extends AppCompatActivity implements NavigationView.On
 
 
 
-
-
-
+//
+//
+//Button button = findViewById(R.id.more_features);
+//button.setOnClickListener(view -> {
+//    Intent intent = new Intent(ActivityHome.this, MoreFeatures.class);
+//    startActivity(intent);
+//});
 
 
 

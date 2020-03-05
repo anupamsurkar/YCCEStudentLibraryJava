@@ -21,7 +21,7 @@
         android:fontFamily="@font/roboto_bold"
         android:text="@string/mechanical"
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
-        android:textSize="30sp"
+        android:textSize="26sp"
         android:textStyle="bold"
         android:layout_marginTop="10dp"/>
 

@@ -9,10 +9,15 @@
     <string name="electrical">Electrical Engineering</string>
     <string name="electronics">Electronics Engineering</string>
     <string name="etc">ETC Engineering</string>
+    <string name="fy">First Year</string>
     <string name="civil">Civil Engineering</string>
     <string name="mechanical">Mechanical Engineering</string>
     <string name="it">Information Technology</string>
 
+    <string-array name="semesters_fy">
+        <item>Semester-I</item>
+        <item>Semester-II</item>
+    </string-array>
 
     <string-array name="semesters">
         <item>Semester-III</item>
