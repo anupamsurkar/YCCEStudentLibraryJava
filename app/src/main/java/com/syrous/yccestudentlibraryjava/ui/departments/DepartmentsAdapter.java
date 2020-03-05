@@ -19,6 +19,7 @@ import com.syrous.yccestudentlibraryjava.ui.ctech.ActivityCtHome;
 import com.syrous.yccestudentlibraryjava.ui.ee.ActivityEeHome;
 import com.syrous.yccestudentlibraryjava.ui.el.ActivityElHome;
 import com.syrous.yccestudentlibraryjava.ui.etc.ActivityEtHome;
+import com.syrous.yccestudentlibraryjava.ui.fy.ActivityFyHome;
 import com.syrous.yccestudentlibraryjava.ui.it.ActivityItHome;
 import com.syrous.yccestudentlibraryjava.ui.mech.ActivityMechHome;
 
@@ -52,7 +53,7 @@ public class DepartmentsAdapter extends RecyclerView.Adapter<DepartmentHolder> {
 
         holder.itemView.setOnClickListener((View) -> {
             if(position == 0){
-                Intent intent = new Intent(mContext, ActivityCvHome.class);
+                Intent intent = new Intent(mContext, ActivityFyHome.class);
                 mContext.startActivity(intent);
             }
             if(position == 1){

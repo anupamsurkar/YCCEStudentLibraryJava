@@ -56,6 +56,7 @@ public class FragmentHome extends Fragment {
 
 
 
+
         View v = inflater.inflate(R.layout.fragment_home_scroll, container, false);
 
         oneDept= new ArrayList<>();
@@ -76,16 +77,17 @@ public class FragmentHome extends Fragment {
 
         OfRecycler = v.findViewById(R.id.recycler_other_features);
 
-        Integer[] feature_logos = {R.drawable.baby, R.drawable.api,
-                R.drawable.tower, R.drawable.tv,
-                R.drawable.crane, R.drawable.work, R.drawable.cpu};
+        Integer[] feature_logos = {R.drawable.home, R.drawable.moodle, R.drawable.upload,
+                R.drawable.pay};
 
-        String[] feature_name = { "Upload Resources", "Attendance", "Online Fee Payment", "ESE Answer sheets", "Exam Dorm Acceptance", "Class Schedule", "Logout"};
+        String[] feature_name = { "YCCE", "Moodle","Upload Paper", "Online Fee Payment"};
 
         modelOF = new ArrayList<>();
 
         for( int i= 0; i<feature_logos.length; i++){
-            ModelOF oFeatures = new ModelOF(feature_logos[i], feature_name[i], "https://www.ycce.edu/");
+
+            ModelOF oFeatures = new ModelOF(feature_logos[i], feature_name[i]
+                    ,"https://www.ycce.edu/");
             modelOF.add(oFeatures);
         }
 
