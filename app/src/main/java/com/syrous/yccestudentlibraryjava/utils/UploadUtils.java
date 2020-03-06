@@ -8,8 +8,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.Uri;
+
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.core.app.JobIntentService;
 import androidx.core.app.NotificationCompat;
 
@@ -17,15 +17,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.google.firestore.v1.WriteResult;
 import com.syrous.yccestudentlibraryjava.Constants.GlobalConstants;
 import com.syrous.yccestudentlibraryjava.ui.upload.ActivityUpload;
 
@@ -50,9 +46,7 @@ public class UploadUtils extends JobIntentService {
     private static final String COLLECTION_FIELD = "reviewPapers";
     private static final String NOTIFICATION_CHANNEL = "Upload_channel";
 
-    private FirebaseStorage storage = FirebaseStorage.getInstance();
-    private StorageReference refs = storage.getReference();
-    private UploadTask uploadTask;
+    private StorageReference refs;
     private boolean mSaved = false;
     private FirebaseFirestore db;
     public UploadUtils() {
@@ -80,6 +74,8 @@ public class UploadUtils extends JobIntentService {
                                         .setContentText("")
                                         .setContentIntent(pi)
                                         .build();
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        refs = storage.getReference();
     }
 
     @Override
@@ -94,7 +90,7 @@ public class UploadUtils extends JobIntentService {
         }
 
         Uri filePath = intent.getData();
-        uploadTask = refs.putFile(Objects.requireNonNull(filePath));
+        UploadTask uploadTask = refs.putFile(Objects.requireNonNull(filePath));
         uploadTask.addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {

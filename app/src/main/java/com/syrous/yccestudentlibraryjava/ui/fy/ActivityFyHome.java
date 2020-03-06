@@ -13,6 +13,7 @@ import com.syrous.yccestudentlibraryjava.ui.GenAdapter;
  * Created By : Syrous
  * date : 15/2/20
  */
+
 public class ActivityFyHome extends AppCompatActivity {
     private RecyclerView recyclerView;
     private String[] semName;

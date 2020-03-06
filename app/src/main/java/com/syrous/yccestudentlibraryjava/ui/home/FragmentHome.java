@@ -1,6 +1,5 @@
 package com.syrous.yccestudentlibraryjava.ui.home;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,11 +15,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.syrous.yccestudentlibraryjava.R;
-import com.syrous.yccestudentlibraryjava.UploadActivity;
-import com.syrous.yccestudentlibraryjava.ui.departments.ModelDepartments;
 import com.syrous.yccestudentlibraryjava.ui.departments.DepartmentsAdapter;
-import com.syrous.yccestudentlibraryjava.ui.other_features.OFAdapter;
+import com.syrous.yccestudentlibraryjava.ui.departments.ModelDepartments;
 import com.syrous.yccestudentlibraryjava.ui.other_features.ModelOF;
+import com.syrous.yccestudentlibraryjava.ui.other_features.OFAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,15 +46,6 @@ public class FragmentHome extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-
-
-
-
-
-
-
-
         View v = inflater.inflate(R.layout.fragment_home_scroll, container, false);
 
         oneDept= new ArrayList<>();
@@ -77,17 +66,14 @@ public class FragmentHome extends Fragment {
 
         OfRecycler = v.findViewById(R.id.recycler_other_features);
 
-        Integer[] feature_logos = {R.drawable.home, R.drawable.moodle, R.drawable.upload,
-                R.drawable.pay};
-
-        String[] feature_name = { "YCCE", "Moodle","Upload Paper", "Online Fee Payment"};
+        String[] feature_name = { "YCCE", "Moodle", "Upload Paper", "Online Fee Payment"};
+        Integer[] feature_logos = {R.drawable.home, R.drawable.moodle,
+                R.drawable.upload, R.drawable.pay};
 
         modelOF = new ArrayList<>();
 
-        for( int i= 0; i<feature_logos.length; i++){
-
-            ModelOF oFeatures = new ModelOF(feature_logos[i], feature_name[i]
-                    ,"https://www.ycce.edu/");
+        for( int i= 0; i < feature_logos.length; i++){
+            ModelOF oFeatures = new ModelOF(feature_logos[i], feature_name[i], "https://www.ycce.edu/");
             modelOF.add(oFeatures);
         }
 
@@ -100,13 +86,5 @@ public class FragmentHome extends Fragment {
         OfRecycler.setAdapter(ofAdapter);
 
         return v;
-
-
-
-
-
     }
-
-
-
 }

@@ -33,7 +33,14 @@
         android:id="@+id/homeFragment"
         android:name="com.syrous.yccestudentlibraryjava.ui.home.FragmentHome"
         android:label="@string/ycce"
-        tools:layout="@layout/fragment_home_scroll"/>
+        tools:layout="@layout/fragment_home_scroll">
+        <action
+            android:id="@+id/action_homeFragment_to_nav_profile"
+            app:destination="@id/nav_profile" />
+        <action
+            android:id="@+id/action_homeFragment_to_nav_about_us"
+            app:destination="@id/nav_about_us" />
+    </fragment>
 
 
 </navigation>

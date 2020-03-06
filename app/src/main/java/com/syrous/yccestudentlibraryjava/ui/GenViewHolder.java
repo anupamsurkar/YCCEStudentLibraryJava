@@ -1,24 +1,14 @@
 package com.syrous.yccestudentlibraryjava.ui;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toolbar;
 
 import androidx.annotation.IdRes;
-import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.ViewPager;
-
-import com.google.android.material.tabs.TabLayout;
-import com.syrous.yccestudentlibraryjava.R;
-import com.syrous.yccestudentlibraryjava.ui.civil.ActivityCvHome;
-import com.syrous.yccestudentlibraryjava.ui.pager.ActivityPager;
 
 /**
  * Created By : Syrous
@@ -47,9 +37,6 @@ implements View.OnClickListener{
     public void onClick(View view) {
         Intent intent;
         intent = new Intent(mContext, SubjectActivity.class);
-
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
         mContext.startActivity(intent);
     }
 }

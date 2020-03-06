@@ -1,10 +1,10 @@
 package com.syrous.yccestudentlibraryjava.ui;
 
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.os.Bundle;
 
 import com.syrous.yccestudentlibraryjava.R;
 
@@ -25,13 +25,5 @@ public class SubjectActivity extends AppCompatActivity {
         SubjectAdapter subjectAdapter= new SubjectAdapter(this, subjectName, courseCode );
         subjectrecycler.setAdapter(subjectAdapter);
         subjectrecycler.setLayoutManager(new LinearLayoutManager(this));
-
-
-
-
-
-
-
-
     }
 }
