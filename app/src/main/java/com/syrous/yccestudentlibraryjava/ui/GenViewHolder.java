@@ -46,7 +46,7 @@ implements View.OnClickListener{
     @Override
     public void onClick(View view) {
         Intent intent;
-        intent = new Intent(mContext, ActivityPager.class);
+        intent = new Intent(mContext, SubjectActivity.class);
 
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 

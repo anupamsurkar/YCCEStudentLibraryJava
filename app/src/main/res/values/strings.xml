@@ -51,5 +51,25 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <string-array name="Subjects">
+        <item>Subject 1</item>
+        <item>Subject 2</item>
+        <item>Subject 3</item>
+        <item>Subject 4</item>
+        <item>Subject 5</item>
+        <item>Subject 6</item>
+
+    </string-array>
+
+    <string-array name="course_code">
+        <item>course 1</item>
+        <item>course 2</item>
+        <item>course 3</item>
+        <item>course 4</item>
+        <item>course 5</item>
+        <item>course 6</item>
+
+    </string-array>
+
 
 </resources>

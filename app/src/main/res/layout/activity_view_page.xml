@@ -16,7 +16,7 @@
         android:id="@+id/myToolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimary"
+        android:background="@color/colorAccent"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         >
 
@@ -38,8 +38,7 @@
         android:id="@+id/myViewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-        >
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
     </androidx.viewpager.widget.ViewPager>
 
