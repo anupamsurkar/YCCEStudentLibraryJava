@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/HomePage"
+    android:id="@+id/nav_graph">
+
+    <fragment
+        android:id="@+id/HomePage"
+        android:name="com.syrous.yccestudentlibraryjava.ui.home.FragmentHome"
+        android:label="@string/home_page"
+        tools:layout="@layout/fragment_home"/>
+
+     <fragment
+        android:id="@+id/AboutUs"
+        android:name="com.syrous.yccestudentlibraryjava.ui.about_us.FragmentAboutUs"
+        android:label="@string/menu_about_us"
+        tools:layout="@layout/fragment_about_us"/>
+
+    <fragment
+        android:id="@+id/ContactUs"
+        android:name="com.syrous.yccestudentlibraryjava.ui.contact_us.FragmentContactUs"
+        android:label="@string/menu_contact_us"
+        tools:layout="@layout/fragment_contact_us"/>
+
+    <fragment
+        android:id="@+id/ProfilePage"
+        android:name="com.syrous.yccestudentlibraryjava.ui.profile.FragmentProfile"
+        android:label="@string/menu_profile"
+        tools:layout="@layout/fragment_profile"/>
+
+
+
+</navigation>

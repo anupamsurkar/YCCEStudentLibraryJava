@@ -37,6 +37,7 @@ implements View.OnClickListener{
     public void onClick(View view) {
         Intent intent;
         intent = new Intent(mContext, SubjectActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         mContext.startActivity(intent);
     }
 }

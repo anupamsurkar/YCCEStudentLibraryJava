@@ -36,6 +36,7 @@
     <string name="nav_header_desc">Navigation header</string>
 
 
+    <string name="home_page">YCCE Student Library</string>
     <string name="menu_profile">Profile</string>
     <string name="menu_about_us">About Us</string>
     <string name="menu_contact_us">Contact Us</string>

@@ -3,11 +3,9 @@ package com.syrous.yccestudentlibraryjava.ui.login;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,10 +21,10 @@ import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.Scope;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
+import com.syrous.yccestudentlibraryjava.R;
 import com.syrous.yccestudentlibraryjava.data.ModelUser;
 import com.syrous.yccestudentlibraryjava.data.User;
 import com.syrous.yccestudentlibraryjava.ui.home.ActivityHome;
-import com.syrous.yccestudentlibraryjava.R;
 
 import static com.syrous.yccestudentlibraryjava.Constants.GlobalConstants.TAG;
 

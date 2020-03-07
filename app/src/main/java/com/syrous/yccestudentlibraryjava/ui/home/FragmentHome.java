@@ -46,7 +46,7 @@ public class FragmentHome extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_home_scroll, container, false);
+        View v = inflater.inflate(R.layout.fragment_home, container, false);
 
         oneDept= new ArrayList<>();
         oneDept.add(new ModelDepartments("First Year", R.drawable.baby));
@@ -73,7 +73,7 @@ public class FragmentHome extends Fragment {
         modelOF = new ArrayList<>();
 
         for( int i= 0; i < feature_logos.length; i++){
-            ModelOF oFeatures = new ModelOF(feature_logos[i], feature_name[i], "https://www.ycce.edu/");
+            ModelOF oFeatures = new ModelOF(feature_logos[i], feature_name[i]);
             modelOF.add(oFeatures);
         }
 
