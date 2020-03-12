@@ -3,6 +3,9 @@
     package="com.syrous.yccestudentlibraryjava">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -36,7 +39,9 @@
         <activity android:name=".ui.upload.ActivityUpload"/>
         <activity android:name=".ui.SubjectActivity"/>
 
-        <service android:name=".utils.UploadUtils"/>
+        <service android:name=".utils.UploadUtils"
+                 android:permission="android.permission.BIND_JOB_SERVICE" />
+
         <service android:name=".utils.DownloadUtils"/>
         <meta-data
             android:name="preloaded_fonts"

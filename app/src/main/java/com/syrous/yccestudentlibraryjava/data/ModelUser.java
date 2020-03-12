@@ -1,12 +1,14 @@
 package com.syrous.yccestudentlibraryjava.data;
 
 
+import java.io.Serializable;
+
 /**
  * Created By : Syrous
  * date : 22/2/20
  */
 
-public class ModelUser {
+public class ModelUser implements Serializable {
 
     private String userName;
     private String userId;

@@ -32,7 +32,7 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Devanshu Vaidya</string>
-    <string name="nav_header_subtitle">vaidyadevanshu@gmail.com</string>
+    <string name="nav_header_subtitle">example123@gmail.com</string>
     <string name="nav_header_desc">Navigation header</string>
 
 
@@ -48,9 +48,6 @@
     <string name="other_features">Other Features</string>
 
     <string name="server_client_id">201887389567-faapcjfh1te96o55t9t1fgt2sb1ue7ic.apps.googleusercontent.com</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string-array name="Subjects">
         <item>Subject 1</item>
@@ -72,5 +69,9 @@
 
     </string-array>
 
+    <string name="upload_title">Select Files to Upload</string>
+    <string name="upload_res_button">Choose Document</string>
+    <string name="upload_res1">Select Type</string>
+    <string name="upload_editText_hint">Enter Course Code</string>
 
 </resources>
