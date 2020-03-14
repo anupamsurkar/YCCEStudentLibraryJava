@@ -4,8 +4,8 @@
     android:foreground="?android:attr/selectableItemBackground"
     android:clickable="true"
     android:orientation="vertical"
-    android:layout_width="160dp"
-    android:layout_height="120dp"
+    android:layout_width="120dp"
+    android:layout_height="100dp"
     app:cardCornerRadius="6dp"
     android:layout_marginEnd="20dp"
     android:layout_marginBottom="5dp">
@@ -19,7 +19,7 @@
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="95dp"
+            android:layout_height="80dp"
             android:id="@+id/other_features_logo"
             android:background="#F5F2F2"
             android:scaleType="centerInside"

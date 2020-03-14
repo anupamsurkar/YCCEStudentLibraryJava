@@ -29,7 +29,9 @@ public class FragmentUpload extends Fragment {
     private static int REQUEST_CODE = 1001;
     private static final int MAX_LENGTH = 20;
 
-    private String[] options = {"MSE", "ESE", "Resources"};
+    private String[] options = { "MSE1", "MSE2", "MSE3", "ESE", "Resources"};
+    private String[] dept = {"CT", "CV", "EE", "EL", "ET", "FY", "IT", "ME"};
+    private String[] sem = {"sem1", "sem2", "sem3", "sem4", "sem5", "sem6", "sem7", "sem8"};
     private String exam;
     private TextView path_display;
     private Intent myFileIntent;
@@ -47,12 +49,14 @@ public class FragmentUpload extends Fragment {
         View v = inflater.inflate(R.layout.activity_upload, container, false);
 
         // Spinner
-        Spinner spinner =  v.findViewById(R.id.spinner1);
+        Spinner spinner1 =  v.findViewById(R.id.spinner1);
+        Spinner spinner2 =  v.findViewById(R.id.spinner2);
+        Spinner spinner3 =  v.findViewById(R.id.spinner3);
 
         ArrayAdapter<String> adapter= new ArrayAdapter<>(getActivity(),android.R.layout.simple_spinner_item, options);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spinner1.setAdapter(adapter);
+        spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 exam = options[position];
@@ -63,6 +67,37 @@ public class FragmentUpload extends Fragment {
 
             }
         });
+
+        ArrayAdapter<String> adapter1= new ArrayAdapter<>(getActivity(),android.R.layout.simple_spinner_item, dept);
+        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner2.setAdapter(adapter1);
+        spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                exam = dept[position];
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        ArrayAdapter<String> adapter3= new ArrayAdapter<>(getActivity(),android.R.layout.simple_spinner_item, sem);
+        adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner3.setAdapter(adapter3);
+        spinner3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                exam = sem[position];
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
 
         courseCodeText = v.findViewById(R.id.course_code);
         courseCodeText.addTextChangedListener(new TextWatcher() {

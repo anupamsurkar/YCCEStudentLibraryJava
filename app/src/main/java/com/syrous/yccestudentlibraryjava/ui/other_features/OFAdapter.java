@@ -65,6 +65,9 @@ public class OFAdapter extends RecyclerView.Adapter<OFViewHolder> {
                 String url = "http://www.ycce.ac.in/Default.aspx";
                 customTabsIntent.launchUrl(context, Uri.parse(url));
             }
+            else if(position == 4){
+               
+            }
         });
     }
 

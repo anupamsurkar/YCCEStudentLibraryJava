@@ -34,8 +34,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.home.ActivityHome"/>
         <activity android:name=".ui.login.ActivityLogin" />
+        <activity android:name=".ui.home.ActivityHome" />
         <activity android:name=".ui.upload.ActivityUpload"/>
         <activity android:name=".ui.SubjectActivity"/>
 

@@ -19,6 +19,8 @@ import com.syrous.yccestudentlibraryjava.ui.departments.DepartmentsAdapter;
 import com.syrous.yccestudentlibraryjava.ui.departments.ModelDepartments;
 import com.syrous.yccestudentlibraryjava.ui.other_features.ModelOF;
 import com.syrous.yccestudentlibraryjava.ui.other_features.OFAdapter;
+import com.syrous.yccestudentlibraryjava.ui.recents.ModelRecents;
+import com.syrous.yccestudentlibraryjava.ui.recents.RecentsAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +34,10 @@ public class FragmentHome extends Fragment {
 
     private List<ModelDepartments> oneDept;
     private List<ModelOF> modelOF;
+    private List<ModelRecents> modelRecents;
+    private RecentsAdapter recentsAdapter;
     private OFAdapter ofAdapter;
+    private RecyclerView RecentRecycler;
     private RecyclerView OfRecycler;
 
    Button upload;
@@ -66,9 +71,9 @@ public class FragmentHome extends Fragment {
 
         OfRecycler = v.findViewById(R.id.recycler_other_features);
 
-        String[] feature_name = { "YCCE", "Moodle", "Upload Paper", "Online Fee Payment"};
+        String[] feature_name = { "YCCE", "Moodle", "Upload Paper", "Online Fee Payment","More"};
         Integer[] feature_logos = {R.drawable.home, R.drawable.moodle,
-                R.drawable.upload, R.drawable.pay};
+                R.drawable.upload, R.drawable.pay, R.drawable.pay};
 
         modelOF = new ArrayList<>();
 
@@ -85,6 +90,45 @@ public class FragmentHome extends Fragment {
         ofAdapter = new OFAdapter(getActivity(), modelOF);
         OfRecycler.setAdapter(ofAdapter);
 
+
+
+
+
+
+
+
+
+
+
+        RecyclerView rsv= v.findViewById(R.id.recents_recycler);
+
+        RecentsAdapter recentsAdapter = new RecentsAdapter(getActivity(), oneDept);
+//        rsv.setLayoutManager(new GridLayoutManager(getActivity(), 4));
+//        rsv.setAdapter(myAdapter);
+
+
+        String recent = "Recent";
+
+        Integer[] feature_logos1 = {R.drawable.recent};
+        String[] feature_name1 = { "Recent", "Moodle", "Upload Paper", "Online Fee Payment","More"};
+
+        RecentRecycler = v.findViewById(R.id.recents_recycler);
+        modelRecents = new ArrayList<>();
+
+        for( int i= 0; i < feature_logos.length; i++){
+            ModelRecents oFeatures = new ModelRecents(feature_logos1[0], recent);
+            modelRecents.add(oFeatures);
+        }
+
+        LinearLayoutManager oLayoutManager1= new LinearLayoutManager(getActivity(),
+                LinearLayoutManager.HORIZONTAL, false);
+        RecentRecycler.setLayoutManager(oLayoutManager1);
+        RecentRecycler.setItemAnimator(new DefaultItemAnimator());
+
+        recentsAdapter = new RecentsAdapter(getActivity(), modelRecents);
+        RecentRecycler.setAdapter(recentsAdapter);
         return v;
+
+
     }
 }

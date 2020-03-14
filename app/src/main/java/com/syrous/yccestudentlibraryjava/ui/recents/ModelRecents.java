@@ -1,11 +1,11 @@
-package com.syrous.yccestudentlibraryjava.ui.other_features;
+package com.syrous.yccestudentlibraryjava.ui.recents;
 
-public class ModelOF {
+public class ModelRecents {
 
     private Integer featureLogo;
     private String featureName;
 
-    public ModelOF(Integer featureLogo, String featureNam){
+    public ModelRecents(Integer featureLogo, String featureNam){
         this.featureLogo = featureLogo;
         this.featureName = featureNam;
     }
