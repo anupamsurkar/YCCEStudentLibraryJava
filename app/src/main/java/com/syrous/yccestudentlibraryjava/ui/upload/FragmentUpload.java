@@ -21,6 +21,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.syrous.yccestudentlibraryjava.R;
+import com.syrous.yccestudentlibraryjava.utils.UploadUtil;
 
 import java.util.Random;
 
@@ -33,6 +34,9 @@ public class FragmentUpload extends Fragment {
     private String[] dept = {"CT", "CV", "EE", "EL", "ET", "FY", "IT", "ME"};
     private String[] sem = {"sem1", "sem2", "sem3", "sem4", "sem5", "sem6", "sem7", "sem8"};
     private String exam;
+    private String examType;
+    private String department;
+    private String semester;
     private TextView path_display;
     private Intent myFileIntent;
     private EditText courseCodeText;
@@ -59,7 +63,12 @@ public class FragmentUpload extends Fragment {
         spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                exam = options[position];
+                examType = options[position].toLowerCase();
+                if(!(examType.equals("ese") || examType.equals("resources"))){
+                    exam = "mse";
+                } else {
+                    exam = "";
+                }
             }
 
             @Override
@@ -74,7 +83,7 @@ public class FragmentUpload extends Fragment {
         spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                exam = dept[position];
+                department = dept[position].toLowerCase();
             }
 
             @Override
@@ -89,7 +98,7 @@ public class FragmentUpload extends Fragment {
         spinner3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                exam = sem[position];
+                semester = sem[position].toLowerCase();
             }
 
             @Override
@@ -123,10 +132,17 @@ public class FragmentUpload extends Fragment {
         Button pick_file = v.findViewById(R.id.file_pick);
 
         pick_file.setOnClickListener((View) ->{
+
+            if(department.equals("fy") && (!semester.equals("sem1") || !semester.equals("sem2"))) {
+
+            } else if(!department.equals("fy") && (semester.equals("sem1") || semester.equals("sem2"))) {
+
+            } else {
                 myFileIntent = new Intent(Intent.ACTION_GET_CONTENT);
                 myFileIntent.setType("application/pdf");
                 myFileIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                 startActivityForResult(myFileIntent, REQUEST_CODE);
+            }
         });
 
         return v;
@@ -139,11 +155,12 @@ public class FragmentUpload extends Fragment {
         if(resultCode == Activity.RESULT_OK){
             if (data != null) {
                 Uri filePath = data.getData();
-                String fileTitle = courseCode + random();
-                path_display.setText(filePath.toString());
-//
-//                Intent uploadService = UploadUtils.newIntent(getActivity(), ,filePath.toString(),fileTitle,exam);
-//                UploadUtils.enqueueWork(getActivity(), uploadService);
+                String fileTitle = examType + "_" + courseCode + "_" + random();
+                path_display.setText("Uploading to "+department+"/"+semester+"/"+courseCode+"/"+exam+"/"+examType+"/"+fileTitle);
+                String serverPath = "paperRefs/"+department+"/"+semester+"/"+courseCode+"/"+exam;
+                assert filePath != null;
+                Intent uploadService = UploadUtil.newIntent(getActivity(), serverPath,filePath.toString(),fileTitle,exam, examType);
+                UploadUtil.enqueueWork(getActivity(), uploadService);
             }
         }
     }
@@ -154,7 +171,7 @@ public class FragmentUpload extends Fragment {
         int randomLength = generator.nextInt(MAX_LENGTH);
         char tempChar;
         for (int i = 0; i < randomLength; i++){
-            tempChar = (char) (generator.nextInt(96) + 32);
+            tempChar = (char) (generator.nextInt(10) + 97);
             randomStringBuilder.append(tempChar);
         }
         return randomStringBuilder.toString();

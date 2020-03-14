@@ -28,6 +28,19 @@
         <item>Semester-VIII</item>
     </string-array>
 
+    <string-array name="sem_name_fy">
+        <item>sem1</item>
+        <item>sem2</item>
+    </string-array>
+    <string-array name="sem_name">
+        <item>sem3</item>
+        <item>sem4</item>
+        <item>sem5</item>
+        <item>sem6</item>
+        <item>sem7</item>
+        <item>sem8</item>
+    </string-array>
+
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -76,7 +89,7 @@
     <string name="upload_res3">Select Sem.</string>
     <string name="upload_editText_hint">Enter Course Code</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="test_path">Path</string>
+    <string name="instruction">Instruction to be added</string>
 
 </resources>

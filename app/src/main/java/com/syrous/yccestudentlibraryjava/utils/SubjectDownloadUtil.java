@@ -10,6 +10,8 @@ import androidx.core.app.JobIntentService;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.syrous.yccestudentlibraryjava.Constants.GlobalConstants;
+import com.syrous.yccestudentlibraryjava.data.ModelSubject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,19 +22,17 @@ import java.util.Objects;
  * date : 2/3/20
  */
 
-public class DownloadUtils extends JobIntentService {
+public class SubjectDownloadUtil extends JobIntentService {
 
     private static String TAG = "DownloadUtils";
+
     private FirebaseFirestore db;
     private DocumentReference docRef;
-    private List<ModelPapers> papers;
+    private List<ModelSubject> subjects;
 
-    public DownloadUtils(){
-
-    }
-
-    public static Intent newIntent(Context context){
-        Intent i = new Intent(context, DownloadUtils.class);
+    public static Intent newIntent(Context context, String serverPath){
+        Intent i = new Intent(context, SubjectDownloadUtil.class);
+        i.putExtra(GlobalConstants.DOWNLOAD_SERVER_PATH, serverPath);
         return i;
     }
 
@@ -40,17 +40,23 @@ public class DownloadUtils extends JobIntentService {
     public void onCreate() {
         super.onCreate();
         db = FirebaseFirestore.getInstance();
-        papers = new ArrayList<>();
+        subjects = new ArrayList<>();
     }
 
     @Override
     protected void onHandleWork(@NonNull Intent intent) {
-        db.collection("paperRefs/ct/sem6")
+
+        String path = intent.getStringExtra(GlobalConstants.DOWNLOAD_SERVER_PATH);
+        assert path != null;
+        db.collection(path)
                 .get()
                 .addOnCompleteListener(task -> {
                     if(task.isSuccessful()){
                         for(QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())){
-                            Log.d(TAG, "Document Fetched : "+document.getId());
+                            if(document.get("course_name") != null) {
+                                ModelSubject subject = new ModelSubject(document.getId(), document.get("course_name").toString());
+                                subjects.add(subject);
+                            }
                         }
                     } else {
                         Log.d(TAG, "Error in Getting Documents ", task.getException());

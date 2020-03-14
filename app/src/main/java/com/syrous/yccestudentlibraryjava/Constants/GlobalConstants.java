@@ -16,6 +16,8 @@ public class GlobalConstants {
 
     public static final String EXAM_NAME = "EXAM_NAME";
 
+    public static final String EXAM_TYPE = "EXAM_TYPE";
+
     public static final String UPLOAD_FILE_PATH = "UPLOAD_FILE_PATH";
 
     public static final String UPLOAD_SESSION = "UPLOAD_SESSION_DETAILS";
@@ -25,5 +27,13 @@ public class GlobalConstants {
     public static final String UPLOAD_SESSION_SAVED = "UPLOAD_SESSION_SAVED";
 
     public static final String UPLOAD_REFERENCE = "UPLOAD_REF";
+
+    public static final String DOWNLOAD_SERVER_PATH = "DOWNLOAD_SERVER_PATH";
+
+    public static final String DOWNLOAD_CODE = "DOWNLOAD_CODE";
+
+    public static final String DEPARTMENT_NAME = "DEPARTMENT_NAME";
+
+    public static final String SEMESTER = "SEMESTER";
 
 }

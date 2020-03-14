@@ -54,20 +54,20 @@ public class FragmentHome extends Fragment {
         View v = inflater.inflate(R.layout.fragment_home, container, false);
 
         oneDept= new ArrayList<>();
-        oneDept.add(new ModelDepartments("First Year", R.drawable.baby));
-        oneDept.add(new ModelDepartments("C.Tech", R.drawable.api));
-        oneDept.add(new ModelDepartments("Civil", R.drawable.crane));
-        oneDept.add(new ModelDepartments("Electrical", R.drawable.electricmotor));
-        oneDept.add(new ModelDepartments("ETC", R.drawable.tower));
-        oneDept.add(new ModelDepartments("Electronics", R.drawable.cpu));
-        oneDept.add(new ModelDepartments("Mechanical", R.drawable.work));
-        oneDept.add(new ModelDepartments("IT", R.drawable.tv));
+        oneDept.add(new ModelDepartments("First Year", R.drawable.baby, "fy"));
+        oneDept.add(new ModelDepartments("C.Tech", R.drawable.api, "ct"));
+        oneDept.add(new ModelDepartments("Civil", R.drawable.crane, "cv"));
+        oneDept.add(new ModelDepartments("Electrical", R.drawable.electricmotor, "el"));
+        oneDept.add(new ModelDepartments("ETC", R.drawable.tower, "et"));
+        oneDept.add(new ModelDepartments("Electronics", R.drawable.cpu, "ee"));
+        oneDept.add(new ModelDepartments("Mechanical", R.drawable.work, "me"));
+        oneDept.add(new ModelDepartments("IT", R.drawable.tv, "it"));
 
-        RecyclerView mrv= v.findViewById(R.id.home_recycler);
+        RecyclerView mrv = v.findViewById(R.id.home_recycler);
 
-        DepartmentsAdapter myAdapter = new DepartmentsAdapter(getActivity(), oneDept);
+        DepartmentsAdapter adapter = new DepartmentsAdapter(getActivity(), oneDept);
         mrv.setLayoutManager(new GridLayoutManager(getActivity(), 4));
-        mrv.setAdapter(myAdapter);
+        mrv.setAdapter(adapter);
 
         OfRecycler = v.findViewById(R.id.recycler_other_features);
 
@@ -82,7 +82,7 @@ public class FragmentHome extends Fragment {
             modelOF.add(oFeatures);
         }
 
-        LinearLayoutManager oLayoutManager= new LinearLayoutManager(getActivity(),
+        LinearLayoutManager oLayoutManager = new LinearLayoutManager(getActivity(),
                 LinearLayoutManager.HORIZONTAL, false);
         OfRecycler.setLayoutManager(oLayoutManager);
         OfRecycler.setItemAnimator(new DefaultItemAnimator());

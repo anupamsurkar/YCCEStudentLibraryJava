@@ -5,10 +5,16 @@ public class ModelDepartments {
     private String dept;
     private String category;
     private int thumbnail;
+    private String deptShortName;
 
-    public ModelDepartments(String dept, int thumbnail) {
+    public ModelDepartments(String dept, int thumbnail, String deptShortName) {
         this.dept = dept;
         this.thumbnail= thumbnail;
+        this.deptShortName = deptShortName;
+    }
+
+    public String getDeptShortName() {
+        return deptShortName;
     }
 
     public int getThumbnail() {

@@ -37,12 +37,12 @@
         <activity android:name=".ui.login.ActivityLogin" />
         <activity android:name=".ui.home.ActivityHome" />
         <activity android:name=".ui.upload.ActivityUpload"/>
-        <activity android:name=".ui.SubjectActivity"/>
+        <activity android:name=".ui.subject.ActivitySubject"/>
 
-        <service android:name=".utils.UploadUtils"
+        <service android:name=".utils.UploadUtil"
                  android:permission="android.permission.BIND_JOB_SERVICE" />
 
-        <service android:name=".utils.DownloadUtils"/>
+        <service android:name=".utils.SubjectDownloadUtil"/>
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

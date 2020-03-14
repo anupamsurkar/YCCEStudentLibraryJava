@@ -31,15 +31,14 @@ import java.util.Objects;
  * date : 16/2/20
  */
 
-public class UploadUtils extends JobIntentService {
+public class UploadUtil extends JobIntentService {
 
     private static final String TAG = "UploadService";
     private static final String NAME_FIELD =  "uploaded-by";
     private static final String DATE_FIELD = "upload-date";
     private static final String TIME_FIELD = "upload-time";
     private static final String FILE_TITLE_FIELD = "paper-title";
-    private static final String EXAM_FIELD = "exam";
-    private static final String DEPARTMENT_FIELD = "department";
+    private static final String EXAM = "exam";
     private static final String URL_FIELD = "download-url";
     private static final String COLLECTION_FIELD = "reviewPapers";
     private static final String NOTIFICATION_CHANNEL = "Upload_channel";
@@ -52,15 +51,16 @@ public class UploadUtils extends JobIntentService {
     private static final int JOB_ID = 2;
 
     public static void enqueueWork(Context context, Intent intent){
-        enqueueWork(context, UploadUtils.class, JOB_ID, intent);
+        enqueueWork(context, UploadUtil.class, JOB_ID, intent);
     }
 
-    public static Intent newIntent(Context context, String serverPath, String filePath, String fileTitle, String exam){
-        Intent i =  new Intent(context, UploadUtils.class);
+    public static Intent newIntent(Context context, String serverPath, String filePath, String fileTitle, String exam, String examType){
+        Intent i =  new Intent(context, UploadUtil.class);
         i.putExtra(GlobalConstants.UPLOAD_SERVER_PATH, serverPath);
         i.putExtra(GlobalConstants.UPLOAD_FILE_TITLE, fileTitle);
         i.putExtra(GlobalConstants.UPLOAD_FILE_PATH, filePath);
         i.putExtra(GlobalConstants.EXAM_NAME, exam);
+        i.putExtra(GlobalConstants.EXAM_TYPE, examType);
         return i;
     }
 
@@ -89,8 +89,9 @@ public class UploadUtils extends JobIntentService {
         String exam = intent.getStringExtra(GlobalConstants.EXAM_NAME);
         String fileTitle = intent.getStringExtra(GlobalConstants.UPLOAD_FILE_TITLE);
         String serverPath = Objects.requireNonNull(intent).getStringExtra(GlobalConstants.UPLOAD_SERVER_PATH);
+        String examType = intent.getStringExtra(GlobalConstants.EXAM_TYPE);
         assert serverPath != null;
-        refs = storage.getReference("papers/"+exam+fileTitle);
+        refs = storage.getReference("papers/"+exam+"/"+fileTitle);
 
         if(serverPath.isEmpty()){
             String pathError = "PATH_NOT_FOUND";
@@ -110,15 +111,14 @@ public class UploadUtils extends JobIntentService {
                     String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
 
                     Map<String, Object> data = new HashMap<>();
-                    data.put(FILE_TITLE_FIELD,"");
-                    data.put(EXAM_FIELD,"");
-                    data.put(DEPARTMENT_FIELD, "");
+                    data.put(FILE_TITLE_FIELD,fileTitle);
                     data.put(NAME_FIELD, User.get(getApplicationContext()).getUser().getUserName());
+                    data.put(EXAM, examType);
                     data.put(DATE_FIELD, currentDate);
                     data.put(TIME_FIELD, currentTime);
-                    data.put(URL_FIELD,refs.getDownloadUrl());
+                    data.put(URL_FIELD,refs.getDownloadUrl().toString());
 
-                    db.collection(serverPath).add(data).addOnSuccessListener((task1) -> {
+                    db.collection(serverPath).document(fileTitle).set(data).addOnSuccessListener((task1) -> {
                         String success = "DOCUMENT_UPLOADED_TO_FIRESTORE";
                         RxEventBus.getBus(getApplicationContext()).publish(RxEventBus._PROGRESS_SUBJECT, success); // generate message of success, task downloadUrl and store it in database and fireStore and inform ui to move to next state.
                     });

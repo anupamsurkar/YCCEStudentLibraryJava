@@ -13,6 +13,7 @@ import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.syrous.yccestudentlibraryjava.Constants.GlobalConstants;
 import com.syrous.yccestudentlibraryjava.R;
 import com.syrous.yccestudentlibraryjava.ui.civil.ActivityCvHome;
 import com.syrous.yccestudentlibraryjava.ui.ctech.ActivityCtHome;
@@ -54,34 +55,42 @@ public class DepartmentsAdapter extends RecyclerView.Adapter<DepartmentHolder> {
         holder.itemView.setOnClickListener((View) -> {
             if(position == 0){
                 Intent intent = new Intent(mContext, ActivityFyHome.class);
+                intent.putExtra(GlobalConstants.DEPARTMENT_NAME, mData.get(0).getDeptShortName());
                 mContext.startActivity(intent);
             }
             if(position == 1){
                 Intent intent = new Intent(mContext, ActivityCtHome.class);
+                intent.putExtra(GlobalConstants.DEPARTMENT_NAME, mData.get(1).getDeptShortName());
                 mContext.startActivity(intent);
             }
             if(position == 2){
                 Intent intent = new Intent(mContext, ActivityCvHome.class);
+                intent.putExtra(GlobalConstants.DEPARTMENT_NAME, mData.get(2).getDeptShortName());
                 mContext.startActivity(intent);
             }
             if(position == 3){
                 Intent intent = new Intent(mContext, ActivityElHome.class);
+                intent.putExtra(GlobalConstants.DEPARTMENT_NAME, mData.get(3).getDeptShortName());
                 mContext.startActivity(intent);
             }
             if(position == 4){
                 Intent intent = new Intent(mContext, ActivityEtHome.class);
+                intent.putExtra(GlobalConstants.DEPARTMENT_NAME, mData.get(4).getDeptShortName());
                 mContext.startActivity(intent);
             }
             if(position == 5){
                 Intent intent = new Intent(mContext, ActivityEeHome.class);
+                intent.putExtra(GlobalConstants.DEPARTMENT_NAME, mData.get(5).getDeptShortName());
                 mContext.startActivity(intent);
             }
             if(position == 6){
                 Intent intent = new Intent(mContext, ActivityMechHome.class);
+                intent.putExtra(GlobalConstants.DEPARTMENT_NAME, mData.get(6).getDeptShortName());
                 mContext.startActivity(intent);
             }
             if(position == 7){
                 Intent intent = new Intent(mContext, ActivityItHome.class);
+                intent.putExtra(GlobalConstants.DEPARTMENT_NAME, mData.get(7).getDeptShortName());
                 mContext.startActivity(intent);
             }
         });
