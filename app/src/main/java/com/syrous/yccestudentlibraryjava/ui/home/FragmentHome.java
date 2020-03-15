@@ -73,7 +73,7 @@ public class FragmentHome extends Fragment {
 
         String[] feature_name = { "YCCE", "Moodle", "Upload Paper", "Online Fee Payment","More"};
         Integer[] feature_logos = {R.drawable.home, R.drawable.moodle,
-                R.drawable.upload, R.drawable.pay, R.drawable.pay};
+                R.drawable.upload, R.drawable.pay, R.drawable.more1};
 
         modelOF = new ArrayList<>();
 
@@ -92,25 +92,13 @@ public class FragmentHome extends Fragment {
 
 
 
-
-
-
-
-
-
-
-
-        RecyclerView rsv= v.findViewById(R.id.recents_recycler);
-
-        RecentsAdapter recentsAdapter = new RecentsAdapter(getActivity(), oneDept);
-//        rsv.setLayoutManager(new GridLayoutManager(getActivity(), 4));
-//        rsv.setAdapter(myAdapter);
+        RecentsAdapter recentsAdapter ;
+//
 
 
         String recent = "Recent";
 
         Integer[] feature_logos1 = {R.drawable.recent};
-        String[] feature_name1 = { "Recent", "Moodle", "Upload Paper", "Online Fee Payment","More"};
 
         RecentRecycler = v.findViewById(R.id.recents_recycler);
         modelRecents = new ArrayList<>();
