@@ -2,6 +2,7 @@ package com.syrous.yccestudentlibraryjava.ui.subject;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +18,7 @@ import com.syrous.yccestudentlibraryjava.ui.pager.ActivityPager;
 
 import java.util.List;
 
-public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.SubViewHolder>{
+public class SubjectAdapter extends RecyclerView.Adapter<SubViewHolder> {
 
     private Context context;
     private List<ModelSubject> subjects;
@@ -45,24 +46,27 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.SubViewH
         });
     }
 
+
     @Override
     public int getItemCount() {
+
+        Log.d("SubjectAdapter", "Subject Size : "+subjects.size());
         return subjects.size();
     }
 
-    public class SubViewHolder extends RecyclerView.ViewHolder{
+}
 
-        private ConstraintLayout mainLayout;
-        private TextView subjectName;
-        private TextView courseCode;
+class SubViewHolder extends RecyclerView.ViewHolder{
 
-        public SubViewHolder(@NonNull View itemView) {
-            super(itemView);
+     ConstraintLayout mainLayout;
+     TextView subjectName;
+     TextView courseCode;
 
-            subjectName = itemView.findViewById(R.id.subname);
-            courseCode = itemView.findViewById(R.id.coursecode);
-            mainLayout = itemView.findViewById(R.id.cardcon);
-        }
+    public SubViewHolder(@NonNull View itemView) {
+        super(itemView);
+
+        subjectName = itemView.findViewById(R.id.subname);
+        courseCode = itemView.findViewById(R.id.coursecode);
+        mainLayout = itemView.findViewById(R.id.cardcon);
     }
-
 }

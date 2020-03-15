@@ -12,12 +12,12 @@ public class ModelSubject {
         this.name = name;
     }
 
-    public ModelSubject(String courseCode, String name, String noOfMsePapers, String noOfEsePapers) {
-        this.name = name;
-        this.courseCode = courseCode;
-        this.noOfMsePapers = noOfMsePapers;
-        this.noOfEsePapers = noOfEsePapers;
-    }
+//    public ModelSubject(String courseCode, String name, String noOfMsePapers, String noOfEsePapers) {
+//        this.name = name;
+//        this.courseCode = courseCode;
+//        this.noOfMsePapers = noOfMsePapers;
+//        this.noOfEsePapers = noOfEsePapers;
+//    }
 
     public String getCourseCode() {
         return courseCode;
