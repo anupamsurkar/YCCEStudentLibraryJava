@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -22,6 +23,7 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubViewHolder> {
 
     private Context context;
     private List<ModelSubject> subjects;
+    private String subname;
 
     public SubjectAdapter(Context context, List<ModelSubject> subjects){
             this.context = context;
@@ -41,7 +43,12 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubViewHolder> {
         holder.subjectName.setText(subjects.get(position).getSubjectName());
         holder.courseCode.setText(subjects.get(position).getCourseCode());
         holder.mainLayout.setOnClickListener(v -> {
+
+
+
             Intent intent= new Intent(context, ActivityPager.class);
+            String strName = String.valueOf(subjects.get(position).getSubjectName());
+            intent.putExtra("subanme", strName);
             context.startActivity(intent);
         });
     }
@@ -66,6 +73,7 @@ class SubViewHolder extends RecyclerView.ViewHolder{
         super(itemView);
 
         subjectName = itemView.findViewById(R.id.subname);
+        Log.i("subname", String.valueOf(subjectName));
         courseCode = itemView.findViewById(R.id.coursecode);
         mainLayout = itemView.findViewById(R.id.cardcon);
     }

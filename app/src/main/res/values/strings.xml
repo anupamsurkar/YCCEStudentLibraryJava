@@ -92,4 +92,8 @@
     <string name="test_path">Path</string>
     <string name="instruction">Instruction to be added</string>
 
+
+    <string name="toolbar_subjects">Subjects</string>
+    <string name="toolbar_papers">Papers and Resources</string>
+
 </resources>
