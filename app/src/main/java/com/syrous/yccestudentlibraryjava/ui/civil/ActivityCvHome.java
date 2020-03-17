@@ -1,7 +1,10 @@
 package com.syrous.yccestudentlibraryjava.ui.civil;
 
+import android.os.Build;
 import android.os.Bundle;
+import android.widget.Toolbar;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,13 +18,18 @@ public class ActivityCvHome extends AppCompatActivity {
     private RecyclerView recyclerView;
     private String dept;
     private boolean isAdded = true;
+    Toolbar toolbar ;
 
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cv_activity_home);
 
         dept = getIntent().getStringExtra(GlobalConstants.DEPARTMENT_NAME);
+
+        toolbar = (Toolbar)findViewById(R.id.toolbar3);
 
         recyclerView= findViewById(R.id.civil_home_recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
