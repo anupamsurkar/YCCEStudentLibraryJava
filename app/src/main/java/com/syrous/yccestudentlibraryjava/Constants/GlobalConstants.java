@@ -30,10 +30,26 @@ public class GlobalConstants {
 
     public static final String DOWNLOAD_SERVER_PATH = "DOWNLOAD_SERVER_PATH";
 
-    public static final String DOWNLOAD_CODE = "DOWNLOAD_CODE";
+    public static final String SUBJECT_NAME = "SUBJECT_NAME";
 
-    public static final String DEPARTMENT_NAME = "DEPARTMENT_NAME";
+    public static final String DEPARTMENT_NAME = "department-name";
+
+    public static final String COURSE_CODE = "course-code";
 
     public static final String SEMESTER = "SEMESTER";
+
+    public static final String NAME_FIELD =  "uploaded-by";
+
+    public static final String DATE_FIELD = "upload-date";
+
+    public static final String TIME_FIELD = "upload-time";
+
+    public static final String FILE_TITLE_FIELD = "paper-title";
+
+    public static final String EXAM = "exam";
+
+    public static final String URL_FIELD = "download-url";
+
+    public static final String EXAMINATION_YEAR = "examination-year";
 
 }

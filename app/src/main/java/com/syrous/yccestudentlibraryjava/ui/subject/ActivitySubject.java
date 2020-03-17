@@ -1,12 +1,9 @@
 package com.syrous.yccestudentlibraryjava.ui.subject;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
-
-import androidx.annotation.IdRes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
@@ -22,8 +19,6 @@ import com.syrous.yccestudentlibraryjava.data.ModelSubject;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.syrous.yccestudentlibraryjava.R.color.browser_actions_bg_grey;
-
 public class ActivitySubject extends AppCompatActivity {
 
     private String path;
@@ -37,7 +32,7 @@ public class ActivitySubject extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_subject);
-        TextView textView = (TextView)findViewById(R.id.toolbar_subjects);
+        TextView textView = findViewById(R.id.toolbar_subjects);
 
         subjects = new ArrayList<>();
         db = FirebaseFirestore.getInstance();
@@ -46,7 +41,7 @@ public class ActivitySubject extends AppCompatActivity {
         String sem = getIntent().getStringExtra(GlobalConstants.SEMESTER);
         textView.setText(dept);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar3);
+        Toolbar toolbar = findViewById(R.id.toolbar3);
 
         switch(dept) {
             case "ct":
@@ -82,9 +77,8 @@ public class ActivitySubject extends AppCompatActivity {
                 toolbar.setBackground(ContextCompat.getDrawable(this,R.drawable.gradient_mech));
                 break;
         }
+
         path = "paperRefs/" + dept + "/" + sem;
-
-
         db.collection(path)
                 .get()
                 .addOnSuccessListener(task -> {
@@ -96,7 +90,7 @@ public class ActivitySubject extends AppCompatActivity {
                     Log.d("DOWNLOAD", "Downloaded size : "+subjects.size());
                     subjectRecycler = findViewById(R.id.subjectRecycler);
                     subjectRecycler.setLayoutManager(new LinearLayoutManager(this));
-                    subjectRecycler.setAdapter(new SubjectAdapter(this, subjects));
+                    subjectRecycler.setAdapter(new SubjectAdapter(this, subjects, path));
                 });
     }
 

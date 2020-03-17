@@ -2,17 +2,20 @@ package com.syrous.yccestudentlibraryjava.ui.pager;
 
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.syrous.yccestudentlibraryjava.Constants.GlobalConstants;
 import com.syrous.yccestudentlibraryjava.R;
+import com.syrous.yccestudentlibraryjava.data.ModelPaper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,35 +25,56 @@ import java.util.List;
  */
 public class EseFragment extends Fragment {
 
+    private RecyclerView mRecyclerview;
+    private List<ModelPaper> esePaperList;
+    private FirebaseFirestore db;
+    private String path;
 
-
-    View v;
-    private RecyclerView mrecyclerview;
-    private List<paper_tabs> list_paper;
     public EseFragment() {
         // Required empty public constructor
     }
 
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        v = inflater.inflate(R.layout.fragment_ese,container,false);
-        mrecyclerview = (RecyclerView) v.findViewById(R.id.recycler_ese);
-        RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(getContext(),list_paper);
-        mrecyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mrecyclerview.setAdapter(recyclerViewAdapter);
-        return v;
+    public static EseFragment newInstance(String path, String exam){
+        EseFragment fragment = new EseFragment();
+        Bundle args = new Bundle();
+        args.putString(GlobalConstants.EXAM_NAME, exam);
+        args.putString(GlobalConstants.DOWNLOAD_SERVER_PATH, path);
+        fragment.setArguments(args);
+        return fragment;
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        list_paper = new ArrayList<>();
-        list_paper.add(new paper_tabs("ese 2018-19"));
-        list_paper.add(new paper_tabs("ese 2018-19"));
-        list_paper.add(new paper_tabs("ese 2017-18"));
-        list_paper.add(new paper_tabs("ese 2016-17"));
+        db = FirebaseFirestore.getInstance();
+        path = getArguments().getString(GlobalConstants.DOWNLOAD_SERVER_PATH) +
+                "/" + getArguments().getString(GlobalConstants.EXAM_NAME);
+    }
 
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View v = inflater.inflate(R.layout.fragment_ese, container, false);
+        mRecyclerview = v.findViewById(R.id.recycler_ese);
+
+        db.collection(path)
+                .get()
+                .addOnSuccessListener((task) -> {
+                    esePaperList = new ArrayList<>();
+                   for(DocumentSnapshot doc: task){
+                      ModelPaper paper = new ModelPaper(doc.getId(), doc.get(GlobalConstants.DEPARTMENT_NAME).toString(),
+                              doc.get(GlobalConstants.COURSE_CODE).toString(), doc.get(GlobalConstants.EXAM).toString(),
+                              doc.get(GlobalConstants.NAME_FIELD).toString(), doc.get(GlobalConstants.TIME_FIELD).toString(),
+                              doc.get(GlobalConstants.TIME_FIELD).toString(), doc.get(GlobalConstants.URL_FIELD).toString(),
+                              Integer.parseInt(doc.get(GlobalConstants.EXAMINATION_YEAR).toString()));
+                       esePaperList.add(paper);
+                   }
+                    PagerAdapter recyclerViewAdapter = new PagerAdapter(getContext(), esePaperList);
+                    mRecyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
+                    mRecyclerview.setAdapter(recyclerViewAdapter);
+                });
+
+
+        return v;
     }
 }

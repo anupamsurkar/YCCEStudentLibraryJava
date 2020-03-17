@@ -2,17 +2,16 @@ package com.syrous.yccestudentlibraryjava.ui.subject;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.syrous.yccestudentlibraryjava.Constants.GlobalConstants;
 import com.syrous.yccestudentlibraryjava.R;
 import com.syrous.yccestudentlibraryjava.data.ModelSubject;
 import com.syrous.yccestudentlibraryjava.ui.pager.ActivityPager;
@@ -23,11 +22,13 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubViewHolder> {
 
     private Context context;
     private List<ModelSubject> subjects;
-    private String subname;
+    private String path;
 
-    public SubjectAdapter(Context context, List<ModelSubject> subjects){
+
+    public SubjectAdapter(Context context, List<ModelSubject> subjects, String path){
             this.context = context;
             this.subjects = subjects;
+            this.path = path;
     }
 
     @NonNull
@@ -43,21 +44,16 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubViewHolder> {
         holder.subjectName.setText(subjects.get(position).getSubjectName());
         holder.courseCode.setText(subjects.get(position).getCourseCode());
         holder.mainLayout.setOnClickListener(v -> {
-
-
-
-            Intent intent= new Intent(context, ActivityPager.class);
-            String strName = String.valueOf(subjects.get(position).getSubjectName());
-            intent.putExtra("subanme", strName);
+            Intent intent = new Intent(context, ActivityPager.class);
+            String subName = String.valueOf(subjects.get(position).getSubjectName());
+            intent.putExtra(GlobalConstants.DOWNLOAD_SERVER_PATH, path);
+            intent.putExtra(GlobalConstants.SUBJECT_NAME, subName);
             context.startActivity(intent);
         });
     }
 
-
     @Override
     public int getItemCount() {
-
-        Log.d("SubjectAdapter", "Subject Size : "+subjects.size());
         return subjects.size();
     }
 
@@ -73,7 +69,6 @@ class SubViewHolder extends RecyclerView.ViewHolder{
         super(itemView);
 
         subjectName = itemView.findViewById(R.id.subname);
-        Log.i("subname", String.valueOf(subjectName));
         courseCode = itemView.findViewById(R.id.coursecode);
         mainLayout = itemView.findViewById(R.id.cardcon);
     }

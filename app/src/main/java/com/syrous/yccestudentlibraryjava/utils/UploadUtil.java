@@ -26,6 +26,14 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 
+import static com.syrous.yccestudentlibraryjava.Constants.GlobalConstants.COURSE_CODE;
+import static com.syrous.yccestudentlibraryjava.Constants.GlobalConstants.DATE_FIELD;
+import static com.syrous.yccestudentlibraryjava.Constants.GlobalConstants.DEPARTMENT_NAME;
+import static com.syrous.yccestudentlibraryjava.Constants.GlobalConstants.EXAM;
+import static com.syrous.yccestudentlibraryjava.Constants.GlobalConstants.NAME_FIELD;
+import static com.syrous.yccestudentlibraryjava.Constants.GlobalConstants.TIME_FIELD;
+import static com.syrous.yccestudentlibraryjava.Constants.GlobalConstants.URL_FIELD;
+
 /**
  * Created By : Syrous
  * date : 16/2/20
@@ -34,12 +42,6 @@ import java.util.Objects;
 public class UploadUtil extends JobIntentService {
 
     private static final String TAG = "UploadService";
-    private static final String NAME_FIELD =  "uploaded-by";
-    private static final String DATE_FIELD = "upload-date";
-    private static final String TIME_FIELD = "upload-time";
-    private static final String FILE_TITLE_FIELD = "paper-title";
-    private static final String EXAM = "exam";
-    private static final String URL_FIELD = "download-url";
     private static final String COLLECTION_FIELD = "reviewPapers";
     private static final String NOTIFICATION_CHANNEL = "Upload_channel";
 
@@ -49,7 +51,8 @@ public class UploadUtil extends JobIntentService {
     private FirebaseStorage storage;
 
     private static final int JOB_ID = 2;
-
+    private String dept;
+    private String courseCode;
     public static void enqueueWork(Context context, Intent intent){
         enqueueWork(context, UploadUtil.class, JOB_ID, intent);
     }
@@ -111,8 +114,10 @@ public class UploadUtil extends JobIntentService {
                     String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
 
                     Map<String, Object> data = new HashMap<>();
-                    data.put(FILE_TITLE_FIELD,fileTitle);
+                    data.put(GlobalConstants.FILE_TITLE_FIELD,fileTitle);
                     data.put(NAME_FIELD, User.get(getApplicationContext()).getUser().getUserName());
+                    data.put(COURSE_CODE, courseCode);
+                    data.put(DEPARTMENT_NAME, dept);
                     data.put(EXAM, examType);
                     data.put(DATE_FIELD, currentDate);
                     data.put(TIME_FIELD, currentTime);
