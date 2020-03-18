@@ -2,6 +2,8 @@ package com.syrous.yccestudentlibraryjava.ui.subject;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,6 +36,13 @@ public class ActivitySubject extends AppCompatActivity {
         setContentView(R.layout.activity_subject);
         TextView textView = findViewById(R.id.toolbar_subjects);
 
+        //Loading
+
+        ProgressBar progressBar = findViewById(R.id.progressBar2);
+        subjectRecycler = findViewById(R.id.subjectRecycler);
+        subjectRecycler.setVisibility(View.GONE);
+
+        //
         subjects = new ArrayList<>();
         db = FirebaseFirestore.getInstance();
 
@@ -43,41 +52,43 @@ public class ActivitySubject extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar3);
 
+
         switch(dept) {
             case "ct":
                 textView.setText(R.string.ctech);
-                toolbar.setBackground(ContextCompat.getDrawable(this, R.drawable.gradient_ctech));
+                toolbar.setBackground(ContextCompat.getDrawable(this, R.drawable.toolbar_ct));
                 break;
             case "cv":
                 textView.setText(R.string.civil);
-                toolbar.setBackground(ContextCompat.getDrawable(this, R.drawable.gradient_civil));
+                toolbar.setBackground(ContextCompat.getDrawable(this, R.drawable.toolabr_cv));
                 break;
             case "ee":
                 textView.setText(R.string.electronics);
-                toolbar.setBackground(ContextCompat.getDrawable(this, R.drawable.gradient_electronics));
+                toolbar.setBackground(ContextCompat.getDrawable(this, R.drawable.toolbar_ee));
                 break;
             case "el":
                 textView.setText(R.string.electrical);
-                toolbar.setBackground(ContextCompat.getDrawable(this, R.drawable.gradient_electrical));
+                toolbar.setBackground(ContextCompat.getDrawable(this, R.drawable.toolbar_el));
                 break;
             case "et":
                 textView.setText(R.string.etc);
-                toolbar.setBackground(ContextCompat.getDrawable(this, R.drawable.gradient_etc));
+                toolbar.setBackground(ContextCompat.getDrawable(this, R.drawable.toolbar_etc));
                 break;
             case "fy":
                 textView.setText(R.string.fy);
-                toolbar.setBackground(ContextCompat.getDrawable(this, R.drawable.gradient_fy));
+                toolbar.setBackground(ContextCompat.getDrawable(this, R.drawable.toolbar_fy));
                 break;
             case "it":
                 textView.setText(R.string.it);
-                toolbar.setBackground(ContextCompat.getDrawable(this, R.drawable.gradient_it));
+                toolbar.setBackground(ContextCompat.getDrawable(this, R.drawable.toolbar_it));
                 break;
             case "me":
                 textView.setText(R.string.mechanical);
-                toolbar.setBackground(ContextCompat.getDrawable(this,R.drawable.gradient_mech));
+                toolbar.setBackground(ContextCompat.getDrawable(this,R.drawable.toolbar_me));
                 break;
         }
 
+        String tv = (String) textView.getText();
         path = "paperRefs/" + dept + "/" + sem;
         db.collection(path)
                 .get()
@@ -88,9 +99,12 @@ public class ActivitySubject extends AppCompatActivity {
                         subjects.add(subject);
                     }
                     Log.d("DOWNLOAD", "Downloaded size : "+subjects.size());
-                    subjectRecycler = findViewById(R.id.subjectRecycler);
+
+                    subjectRecycler.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.GONE);
+
                     subjectRecycler.setLayoutManager(new LinearLayoutManager(this));
-                    subjectRecycler.setAdapter(new SubjectAdapter(this, subjects, path));
+                    subjectRecycler.setAdapter(new SubjectAdapter(this, subjects, path,tv));
                 });
     }
 
