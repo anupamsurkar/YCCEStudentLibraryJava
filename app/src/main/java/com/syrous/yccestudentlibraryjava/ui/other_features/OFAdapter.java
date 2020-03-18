@@ -66,7 +66,8 @@ public class OFAdapter extends RecyclerView.Adapter<OFViewHolder> {
                 customTabsIntent.launchUrl(context, Uri.parse(url));
             }
             else if(position == 4){
-               
+               Intent i = new Intent(context, Activity_morefeatures.class);
+               context.startActivity(i);
             }
         });
     }

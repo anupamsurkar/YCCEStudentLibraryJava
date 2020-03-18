@@ -14,7 +14,7 @@
         android:layout_height="260dp"
         android:fitsSystemWindows="true"
         android:theme="@style/AppTheme.AppBarOverlay"
-        android:background="@drawable/gradient1">
+        android:background="@drawable/toolbar_ct">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/toolbar_layout"
