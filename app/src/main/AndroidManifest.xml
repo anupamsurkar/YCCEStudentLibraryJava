@@ -14,7 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.other_features.Activity_morefeatures"></activity>
+        <activity android:name=".ui.other_features.Activity_morefeatures" />
         <activity android:name=".ui.pager.ActivityPager" />
         <activity android:name=".ui.el.ActivityElHome" />
         <activity android:name=".ui.ee.ActivityEeHome" />

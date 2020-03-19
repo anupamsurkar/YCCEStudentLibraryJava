@@ -1,6 +1,7 @@
 package com.syrous.yccestudentlibraryjava.ui.pager;
 
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,13 +30,14 @@ public class EseFragment extends Fragment {
     private List<ModelPaper> esePaperList;
     private FirebaseFirestore db;
     private String path;
+    private Activity activity;
 
-    public EseFragment() {
-        // Required empty public constructor
+    public EseFragment(Activity activity) {
+        this.activity = activity;
     }
 
-    public static EseFragment newInstance(String path, String exam){
-        EseFragment fragment = new EseFragment();
+    public static EseFragment newInstance(Activity activity, String path, String exam){
+        EseFragment fragment = new EseFragment(activity);
         Bundle args = new Bundle();
         args.putString(GlobalConstants.EXAM_NAME, exam);
         args.putString(GlobalConstants.DOWNLOAD_SERVER_PATH, path);
@@ -47,6 +49,7 @@ public class EseFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         db = FirebaseFirestore.getInstance();
+        assert getArguments() != null;
         path = getArguments().getString(GlobalConstants.DOWNLOAD_SERVER_PATH) +
                 "/" + getArguments().getString(GlobalConstants.EXAM_NAME);
     }
@@ -61,7 +64,7 @@ public class EseFragment extends Fragment {
                 .get()
                 .addOnSuccessListener((task) -> {
                     esePaperList = new ArrayList<>();
-                   for(DocumentSnapshot doc: task){
+                   for(DocumentSnapshot doc: task.getDocuments()){
                       ModelPaper paper = new ModelPaper(doc.getId(), doc.get(GlobalConstants.DEPARTMENT_NAME).toString(),
                               doc.get(GlobalConstants.COURSE_CODE).toString(), doc.get(GlobalConstants.EXAM).toString(),
                               doc.get(GlobalConstants.NAME_FIELD).toString(), doc.get(GlobalConstants.TIME_FIELD).toString(),
@@ -69,7 +72,7 @@ public class EseFragment extends Fragment {
                               Integer.parseInt(doc.get(GlobalConstants.EXAMINATION_YEAR).toString()));
                        esePaperList.add(paper);
                    }
-                    PagerAdapter recyclerViewAdapter = new PagerAdapter(getContext(), esePaperList);
+                    PagerAdapter recyclerViewAdapter = new PagerAdapter(activity, getActivity(), esePaperList);
                     mRecyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
                     mRecyclerview.setAdapter(recyclerViewAdapter);
                 });

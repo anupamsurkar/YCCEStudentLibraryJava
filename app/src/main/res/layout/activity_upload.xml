@@ -37,7 +37,7 @@
 
 
     <Spinner
-        android:id="@+id/spinner1"
+        android:id="@+id/exam_spinner"
         android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="101dp"
@@ -49,7 +49,7 @@
         app:layout_constraintTop_toBottomOf="@+id/upload_title" />
 
     <Spinner
-        android:id="@+id/spinner2"
+        android:id="@+id/dept_spinner"
         android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="96dp"
@@ -58,10 +58,10 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/spinner1" />
+        app:layout_constraintTop_toBottomOf="@+id/exam_spinner" />
 
     <Spinner
-        android:id="@+id/spinner3"
+        android:id="@+id/sem_spinner"
         android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="90dp"
@@ -70,7 +70,7 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/textView3"
-        app:layout_constraintTop_toBottomOf="@+id/spinner2" />
+        app:layout_constraintTop_toBottomOf="@+id/dept_spinner" />
 
     <EditText
         android:id="@+id/course_code"
@@ -174,7 +174,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/year_edit_text"
         android:layout_width="0dp"
         android:layout_height="49dp"
         android:layout_marginStart="20dp"
@@ -182,10 +182,11 @@
         android:layout_marginEnd="20dp"
         android:ems="10"
         android:gravity="center"
-        android:hint="Paper year (Ex. 2019-20)"
+        android:hint="@string/year_hint"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/upload_title" />
+        app:layout_constraintTop_toBottomOf="@+id/upload_title"
+        android:autofillHints="2018" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,7 @@
 package com.syrous.yccestudentlibraryjava.ui.pager;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,13 +30,14 @@ public class StudyMaterialFragment extends Fragment {
     private List<ModelResource> resourceList;
     private FirebaseFirestore db;
     private String path;
+    private Context context;
 
-    public StudyMaterialFragment() {
-        // Required empty public constructor
+    public StudyMaterialFragment(Context context) {
+        this.context = context;
     }
 
-    public static StudyMaterialFragment newInstance(String path, String exam){
-        StudyMaterialFragment fragment = new StudyMaterialFragment();
+    public static StudyMaterialFragment newInstance(Context context, String path, String exam){
+        StudyMaterialFragment fragment = new StudyMaterialFragment(context);
         Bundle args = new Bundle();
         args.putString(GlobalConstants.EXAM_NAME, exam);
         args.putString(GlobalConstants.DOWNLOAD_SERVER_PATH, path);

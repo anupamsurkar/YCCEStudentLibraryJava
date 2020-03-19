@@ -2,7 +2,6 @@ package com.syrous.yccestudentlibraryjava.ui.subject;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,14 +23,14 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubViewHolder> {
     private Context context;
     private List<ModelSubject> subjects;
     private String path;
-    private String textview;
+    private String textView;
 
 
     public SubjectAdapter(Context context, List<ModelSubject> subjects, String path, String textView){
             this.context = context;
             this.subjects = subjects;
             this.path = path;
-            this.textview = textView;
+            this.textView = textView;
     }
 
     @NonNull
@@ -51,7 +50,8 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubViewHolder> {
             String subName = String.valueOf(subjects.get(position).getSubjectName());
             intent.putExtra(GlobalConstants.DOWNLOAD_SERVER_PATH, path);
             intent.putExtra(GlobalConstants.SUBJECT_NAME, subName);
-            intent.putExtra("deptName",textview);
+            intent.putExtra(GlobalConstants.COURSE_CODE, subjects.get(position).getCourseCode());
+            intent.putExtra(GlobalConstants.DEPARTMENT_NAME, textView);
             context.startActivity(intent);
         });
     }
@@ -74,6 +74,6 @@ class SubViewHolder extends RecyclerView.ViewHolder{
 
         subjectName = itemView.findViewById(R.id.subname);
         courseCode = itemView.findViewById(R.id.coursecode);
-        mainLayout = itemView.findViewById(R.id.cardcon);
+        mainLayout = itemView.findViewById(R.id.card_on);
     }
 }
