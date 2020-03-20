@@ -84,6 +84,7 @@
 
     <string name="upload_title">Select Files to Upload</string>
     <string name="upload_res_button">Choose Document</string>
+    <string name="upload_res_upload_but">Upload</string>
     <string name="upload_res1">Select Exam</string>
     <string name="upload_res2">Select Dept.</string>
     <string name="upload_res3">Select Sem.</string>
@@ -95,5 +96,7 @@
 
     <string name="toolbar_subjects">Subjects</string>
     <string name="toolbar_papers">Papers and Resources</string>
+
+    <string name="year_hint">Paper year (Ex. 2019-20)</string>
 
 </resources>

@@ -1,16 +1,21 @@
 package com.syrous.yccestudentlibraryjava.ui.pager;
 
+import android.app.Activity;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 public class ViewPagerAdapter extends FragmentStateAdapter {
 
     private String path;
+    private Activity activity;
 
-    public ViewPagerAdapter(@NonNull FragmentActivity fragmentActivity, String path) {
-        super(fragmentActivity);
+    public ViewPagerAdapter(@NonNull FragmentManager fm, Lifecycle lifecycle, Activity activity, String path) {
+        super(fm, lifecycle);
+        this.activity = activity;
         this.path = path;
     }
 
@@ -24,11 +29,11 @@ public class ViewPagerAdapter extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         switch (position) {
             case 0:
-                return MseFragment.newInstance(path, "mse");
+                return MseFragment.newInstance(activity, path, "mse");
             case 1:
-                return EseFragment.newInstance(path, "ese");
+                return EseFragment.newInstance(activity, path, "ese");
             default:
-                return StudyMaterialFragment.newInstance(path, "resources");
+                return StudyMaterialFragment.newInstance(activity, path, "resources");
         }
     }
 

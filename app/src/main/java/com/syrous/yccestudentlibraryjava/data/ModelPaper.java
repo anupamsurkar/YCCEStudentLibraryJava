@@ -1,6 +1,8 @@
 package com.syrous.yccestudentlibraryjava.data;
 
-public class ModelPaper {
+import java.io.Serializable;
+
+public class ModelPaper implements Serializable {
 
     private String courseCode;
     private String paperTitle;
