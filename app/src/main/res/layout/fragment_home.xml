@@ -69,15 +69,6 @@
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="26sp" />
 
-            <Button
-                android:id="@+id/more_features"
-                style="?android:attr/borderlessButtonStyle"
-                android:layout_width="18dp"
-                android:layout_height="30dp"
-                android:layout_marginLeft="20dp"
-                android:background="@drawable/more"
-                android:padding="10dp" />
-
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
