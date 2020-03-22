@@ -44,6 +44,17 @@
             android:name=".utils.UploadUtil"
             android:permission="android.permission.BIND_JOB_SERVICE" />
 
+        <service android:name=".utils.DownloadAndSaveUtil"/>
+
+        <provider
+            android:authorities="com.syrous.yccestudentlibraryjava.provider"
+            android:name="androidx.core.content.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+            android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"/>
+        </provider>
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

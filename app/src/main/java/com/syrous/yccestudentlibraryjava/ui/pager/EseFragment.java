@@ -57,8 +57,8 @@ public class EseFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_ese, container, false);
-        mRecyclerview = v.findViewById(R.id.recycler_ese);
+        View v = inflater.inflate(R.layout.fragment_pager, container, false);
+        mRecyclerview = v.findViewById(R.id.recycler_pager);
 
         db.collection(path)
                 .get()
@@ -68,7 +68,7 @@ public class EseFragment extends Fragment {
                       ModelPaper paper = new ModelPaper(doc.getId(), doc.get(GlobalConstants.DEPARTMENT_NAME).toString(),
                               doc.get(GlobalConstants.COURSE_CODE).toString(), doc.get(GlobalConstants.EXAM).toString(),
                               doc.get(GlobalConstants.NAME_FIELD).toString(), doc.get(GlobalConstants.TIME_FIELD).toString(),
-                              doc.get(GlobalConstants.TIME_FIELD).toString(), doc.get(GlobalConstants.URL_FIELD).toString(),
+                              doc.get(GlobalConstants.URL_FIELD).toString(), doc.get(GlobalConstants.TIME_FIELD).toString(),
                               Integer.parseInt(doc.get(GlobalConstants.EXAMINATION_YEAR).toString()));
                        esePaperList.add(paper);
                    }

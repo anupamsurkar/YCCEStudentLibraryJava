@@ -57,9 +57,9 @@ public class StudyMaterialFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-      View v = inflater.inflate(R.layout.fragment_study_material,container,false);
+      View v = inflater.inflate(R.layout.fragment_pager,container,false);
 
-        mRecyclerview = v.findViewById(R.id.recycler_study);
+        mRecyclerview = v.findViewById(R.id.recycler_pager);
 
         db.collection(path)
                 .get()
