@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,13 +23,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.syrous.yccestudentlibraryjava.R;
-import com.syrous.yccestudentlibraryjava.data.ModelPaper;
-import com.syrous.yccestudentlibraryjava.data.User;
-import com.syrous.yccestudentlibraryjava.utils.UploadUtil;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
 import java.util.Objects;
 import java.util.Random;
 
@@ -65,7 +60,7 @@ public class FragmentUpload extends Fragment {
         Spinner departmentSpinner =  v.findViewById(R.id.dept_spinner);
         Spinner semSpinner =  v.findViewById(R.id.sem_spinner);
 
-        ArrayAdapter<String> adapter= new ArrayAdapter<>(Objects.requireNonNull(getActivity()),android.R.layout.simple_spinner_item, options);
+        ArrayAdapter<String> adapter= new ArrayAdapter<>(requireActivity(),android.R.layout.simple_spinner_item, options);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         examSpinner.setAdapter(adapter);
         examSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -182,24 +177,25 @@ public class FragmentUpload extends Fragment {
         if(resultCode == Activity.RESULT_OK){
             if (data != null) {
                 Uri filePath = data.getData();
-                String fileTitle = examType + "_" + courseCode + "_" + random();
-                String serverPath = "paperRefs/"+department+"/"+semester+"/"+courseCode+"/"+exam;
-
-                String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
-                String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
-
-                path_display.setText("Uploading to "+department+"/"+semester+"/"+courseCode+"/"+exam+"/"+examType+"/"+fileTitle);
-
-                ModelPaper paper = new ModelPaper(fileTitle, department, courseCode, examType,
-                        User.get(getActivity()).getUser().getUserName(), currentDate,null,
-                        currentTime, Integer.parseInt(year));
-
-                assert filePath != null;
-                Intent uploadService = UploadUtil.newIntent(getActivity(), serverPath,
-                        filePath.toString(), fileTitle, exam, paper);
-
-                UploadUtil.enqueueWork(getActivity(), uploadService);
-                pickFile.setText("CHOOSE DOCUMENT");
+                Log.d("File Uri", "URI of Picked File : "+filePath.toString());
+//                String fileTitle = examType + "_" + courseCode + "_" + random();
+//                String serverPath = "paperRefs/"+department+"/"+semester+"/"+courseCode+"/"+exam;
+//
+//                String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
+//                String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
+//
+//                path_display.setText("Uploading to "+department+"/"+semester+"/"+courseCode+"/"+exam+"/"+examType+"/"+fileTitle);
+//
+//                ModelPaper paper = new ModelPaper(fileTitle, department, courseCode, examType,
+//                        User.get(getActivity()).getUser().getUserName(), currentDate,null,
+//                        currentTime, Integer.parseInt(year));
+//
+//                assert filePath != null;
+//                Intent uploadService = UploadUtil.newIntent(getActivity(), serverPath,
+//                        filePath.toString(), fileTitle, exam, paper);
+//
+//                UploadUtil.enqueueWork(getActivity(), uploadService);
+//                pickFile.setText("CHOOSE DOCUMENT");
             }
         }
     }

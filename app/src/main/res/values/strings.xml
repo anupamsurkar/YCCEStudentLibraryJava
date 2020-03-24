@@ -98,5 +98,7 @@
     <string name="toolbar_papers">Papers and Resources</string>
 
     <string name="year_hint">Paper year (Ex. 2019-20)</string>
+    <string name="previous">Previous</string>
+    <string name="next">Next</string>
 
 </resources>

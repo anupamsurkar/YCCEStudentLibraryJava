@@ -3,6 +3,7 @@ package com.syrous.yccestudentlibraryjava.utils;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Binder;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -49,24 +50,29 @@ public class DownloadAndSaveUtil extends JobIntentService {
         ModelPaper paper = (ModelPaper) intent.getSerializableExtra(DOWNLOAD_PAPER);
         StorageReference refs = storage.getReferenceFromUrl(paper.getDownloadUrl());
 
-        String filePath = paper.getExamType() + "/" + paper.getCourseCode();
+        String filePath = paper.getExamType();
         String filename = paper.getPaperTitle() + ".pdf";
         String storageLocation = getExternalFilesDir(filePath).toString();
         Log.d("FilePath", storageLocation);
         File localFile = new File(getExternalFilesDir(filePath), filename);
 
-        refs.getFile(localFile).addOnSuccessListener(taskSnapshot -> {
-        });
+//        refs.getFile(localFile).addOnSuccessListener(taskSnapshot -> {
+//        });
 
-//
-        Uri fileUri = getUriForFile(getApplicationContext(), "com.syrous.yccestudentlibraryjava.provider", localFile);
-        Log.d("DownloadFilePath", "FileProviderPath : "+fileUri.toString());
 
+        Uri fileUri = getUriForFile(this, getPackageName()+".fileprovider", localFile);
+
+        int uid = Binder.getCallingUid();
+        String callingPackage = getPackageManager().getNameForUid(uid);
+
+        getApplication().grantUriPermission(callingPackage, fileUri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        Log.d("FilePath", fileUri.toString());
         Intent i = new Intent(Intent.ACTION_VIEW);
-        i.setDataAndType(fileUri, "application/pdf");
+        i.setDataAndType(fileUri, getContentResolver().getType(fileUri));
         i.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         i.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(i);
+
     }
 }

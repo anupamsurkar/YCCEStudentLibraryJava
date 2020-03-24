@@ -39,7 +39,7 @@
         <activity android:name=".ui.home.ActivityHome" />
         <activity android:name=".ui.upload.ActivityUpload" />
         <activity android:name=".ui.subject.ActivitySubject" />
-
+        <activity android:name=".ui.pdf_renderer.ActivityPDFRenderer"/>
         <service
             android:name=".utils.UploadUtil"
             android:permission="android.permission.BIND_JOB_SERVICE" />
@@ -47,8 +47,8 @@
         <service android:name=".utils.DownloadAndSaveUtil"/>
 
         <provider
-            android:authorities="com.syrous.yccestudentlibraryjava.provider"
             android:name="androidx.core.content.FileProvider"
+            android:authorities="com.syrous.yccestudentlibraryjava.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
