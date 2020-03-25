@@ -1,143 +1,72 @@
+/*
+ * Copyright (C) 2017 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.syrous.yccestudentlibraryjava.ui.pdf_renderer
 
-import android.app.Application
-import android.graphics.Bitmap
-import android.graphics.pdf.PdfRenderer
 import android.os.Build
 import android.os.Bundle
-import android.os.ParcelFileDescriptor
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageView
 import androidx.annotation.RequiresApi
-import androidx.annotation.WorkerThread
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import com.syrous.yccestudentlibraryjava.R
-import java.io.File
-import java.io.FileOutputStream
-import java.io.IOException
-import java.io.InputStream
-import java.util.concurrent.Executor
-import java.util.concurrent.Executors
+
+/**
+ * This fragment has a big [ImageView] that shows PDF pages, and 2 [Button]s to move between pages.
+ */
+
 @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-open class FragmentPdfRenderer(val application: Application, val useInstantExecutor: Boolean): Fragment() {
+class FragmentPdfRenderer : Fragment() {
 
-    private var executor: Executor
-    private lateinit var fileDescriptor: ParcelFileDescriptor
-    private lateinit var pdfRenderer: PdfRenderer
-    private lateinit var currentPage: PdfRenderer.Page
-    private var cleared: Boolean? = false
+    private val viewModel: PdfRendererViewModel? = null
 
-    companion object{
-
-        const val TAG = "FragmentPdfRenderer"
-//
-//        fun newInstance(): FragmentPdfRenderer {
-//            return FragmentPdfRenderer()
-//        }
-    }
-
-    init {
-        if(useInstantExecutor) {
-//            executor = Runnable::run
-            executor = Executors.newSingleThreadExecutor()
-        }
-        else {
-            executor = Executors.newSingleThreadExecutor()
-        }
-    }
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.pdf_renderer_basic_fragment, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        // View references.
+        val image: ImageView = view.findViewById(R.id.image)
+        val buttonPrevious: Button = view.findViewById(R.id.previous)
+        val buttonNext: Button = view.findViewById(R.id.next)
 
-    }
-
-    fun showPrevious() {
-
-        val index: Int = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            currentPage.index
-        } else {
-            TODO("VERSION.SDK_INT < LOLLIPOP")
-        }
-        if (index > 0) {
-            executor.execute(Runnable { showPage(index - 1) })
-        }
-    }
-
-    fun showNext() {
-
-        val index: Int = currentPage.index
-        if (index + 1 < pdfRenderer.pageCount) {
-            executor.execute(Runnable { showPage(index + 1) })
-        }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-
-        executor.execute(Runnable {
-            try {
-                closePdfRenderer()
-                cleared = true
-            } catch (e: IOException) {
-                Log.i(TAG, "Failed to close PdfRenderer", e)
-            }
+        // Bind data.
+        viewModel?.pageInfo?.observe(viewLifecycleOwner, Observer { (index, count) ->
+//            activity?.title = getString(R.string.app_name_with_index, index + 1, count)
         })
+        viewModel?.pageBitmap?.observe(viewLifecycleOwner, Observer { image.setImageBitmap(it) })
+        viewModel?.previousEnabled?.observe(viewLifecycleOwner, Observer {
+            buttonPrevious.isEnabled = it
+        })
+        viewModel?.nextEnabled?.observe(viewLifecycleOwner, Observer {
+            buttonNext.isEnabled = it
+        })
+
+        // Bind events.
+        buttonPrevious.setOnClickListener { viewModel?.showPrevious() }
+        buttonNext.setOnClickListener { viewModel?.showNext() }
     }
 
-    @WorkerThread
-    @Throws(IOException::class)
-    private fun openPdfRenderer() {
-//        val file = File(getApplication<Application>().getCacheDir(), com.example.android.pdfrendererbasic.PdfRendererBasicViewModel.FILENAME)
-//        if (!file.exists()) {
-//            // Since PdfRenderer cannot handle the compressed asset file directly, we copy it into
-//            // the cache directory.
-//            val asset: InputStream = getApplication<Application>().getAssets().open(com.example.android.pdfrendererbasic.PdfRendererBasicViewModel.FILENAME)
-//            val output = FileOutputStream(file)
-            val buffer = ByteArray(1024)
-            var size: Int
-//            while (asset.read(buffer).also { size = it } != -1) {
-//                output.write(buffer, 0, size)
-//            }
-//            asset.close()
-//            output.close()
-//        }
-//        fileDescriptor = ParcelFileDescriptor.open(file, ParcelFileDescriptor.MODE_READ_ONLY)
-//        pdfRenderer = PdfRenderer(fileDescriptor)
-    }
-
-
-    @WorkerThread
-    @Throws(IOException::class)
-    private fun closePdfRenderer() {
-        currentPage.close()
-        pdfRenderer.close()
-        fileDescriptor.close()
-    }
-
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-    @WorkerThread
-    private fun showPage(index: Int) {
-        // Make sure to close the current page before opening another one.
-        currentPage.close()
-        // Use `openPage` to open a specific page in PDF.
-        currentPage = pdfRenderer.openPage(index)
-        // Important: the destination bitmap must be ARGB (not RGB).
-        val bitmap = Bitmap.createBitmap(currentPage.width, currentPage.height,
-                Bitmap.Config.ARGB_8888)
-        // Here, we render the page onto the Bitmap.
-        // To render a portion of the page, use the second and third parameter. Pass nulls to get
-        // the default result.
-        // Pass either RENDER_MODE_FOR_DISPLAY or RENDER_MODE_FOR_PRINT for the last parameter.
-        currentPage.render(bitmap, null, null, PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY)
-//        mPageBitmap.postValue(bitmap)
-        val count: Int = pdfRenderer.pageCount
-//        mPageInfo.postValue(PdfDocument.PageInfo(index, count))
-//        mPreviousEnabled.postValue(index > 0)
-//        mNextEnabled.postValue(index + 1 < count)
-    }
 }

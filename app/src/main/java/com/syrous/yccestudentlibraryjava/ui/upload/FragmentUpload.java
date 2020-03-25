@@ -24,7 +24,6 @@ import androidx.fragment.app.Fragment;
 
 import com.syrous.yccestudentlibraryjava.R;
 
-import java.util.Objects;
 import java.util.Random;
 
 public class FragmentUpload extends Fragment {
@@ -80,7 +79,7 @@ public class FragmentUpload extends Fragment {
             }
         });
 
-        ArrayAdapter<String> departmentAdapter= new ArrayAdapter<>(getActivity(),android.R.layout.simple_spinner_item, dept);
+        ArrayAdapter<String> departmentAdapter = new ArrayAdapter<>(getActivity(),android.R.layout.simple_spinner_item, dept);
         departmentAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         departmentSpinner.setAdapter(departmentAdapter);
         departmentSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
