@@ -1,13 +1,17 @@
 package com.syrous.yccestudentlibraryjava.ui.home;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -25,6 +29,8 @@ import com.syrous.yccestudentlibraryjava.ui.recents.RecentsAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
+import static androidx.core.content.ContextCompat.checkSelfPermission;
+
 /**
  * Created By : Syrous
  * date : 6/2/20
@@ -40,9 +46,7 @@ public class FragmentHome extends Fragment {
     private RecyclerView RecentRecycler;
     private RecyclerView OfRecycler;
 
-   Button upload;
-
-
+    private static final String TAG = "HOME_FRAGMENT";
 
     public static FragmentHome newInstance(){
         return new FragmentHome();
@@ -52,6 +56,10 @@ public class FragmentHome extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_home, container, false);
+
+        isReadStoragePermissionGranted();
+        isWriteStoragePermissionGranted();
+
 
         oneDept= new ArrayList<>();
         oneDept.add(new ModelDepartments("First Year", R.drawable.baby, "fy"));
@@ -118,5 +126,66 @@ public class FragmentHome extends Fragment {
         return v;
 
 
+    }
+
+    public  boolean isReadStoragePermissionGranted() {
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (checkSelfPermission(getActivity(), Manifest.permission.READ_EXTERNAL_STORAGE)
+                    == PackageManager.PERMISSION_GRANTED) {
+                Log.v(TAG,"Permission is granted1");
+                return true;
+            } else {
+
+                Log.v(TAG,"Permission is revoked1");
+                ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 3);
+                return false;
+            }
+        }
+        else { //permission is automatically granted on sdk<23 upon installation
+            Log.v(TAG,"Permission is granted1");
+            return true;
+        }
+    }
+
+    public  boolean isWriteStoragePermissionGranted() {
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (checkSelfPermission(getActivity(), android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    == PackageManager.PERMISSION_GRANTED) {
+                Log.v(TAG,"Permission is granted2");
+                return true;
+            } else {
+
+                Log.v(TAG,"Permission is revoked2");
+                ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 2);
+                return false;
+            }
+        }
+        else { //permission is automatically granted on sdk<23 upon installation
+            Log.v(TAG,"Permission is granted2");
+            return true;
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case 2:
+                Log.d(TAG, "External storage2");
+                if(grantResults[0]== PackageManager.PERMISSION_GRANTED){
+                    Log.v(TAG,"Permission: "+permissions[0]+ "was "+grantResults[0]);
+                    //resume tasks needing this permission
+
+                }
+                break;
+
+            case 3:
+                Log.d(TAG, "External storage1");
+                if(grantResults[0]== PackageManager.PERMISSION_GRANTED){
+                    Log.v(TAG,"Permission: "+permissions[0]+ "was "+grantResults[0]);
+                    //resume tasks needing this permission
+                }
+                break;
+        }
     }
 }

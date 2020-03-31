@@ -92,7 +92,7 @@ public class UploadUtil extends JobIntentService {
         String serverPath = Objects.requireNonNull(intent).getStringExtra(GlobalConstants.UPLOAD_SERVER_PATH);
         ModelPaper paper = (ModelPaper) intent.getSerializableExtra("paper");
         assert serverPath != null;
-        refs = storage.getReference("papers/"+exam);
+        refs = storage.getReference("papers/"+exam+"/"+fileTitle);
 
         if(serverPath.isEmpty()){
             String pathError = "PATH_NOT_FOUND";

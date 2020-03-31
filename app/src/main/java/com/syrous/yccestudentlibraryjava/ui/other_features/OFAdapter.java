@@ -16,6 +16,7 @@ import androidx.browser.customtabs.CustomTabsIntent;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.syrous.yccestudentlibraryjava.R;
+import com.syrous.yccestudentlibraryjava.ui.more_features.Activity_more_features;
 import com.syrous.yccestudentlibraryjava.ui.upload.ActivityUpload;
 
 import java.util.List;
@@ -66,8 +67,8 @@ public class OFAdapter extends RecyclerView.Adapter<OFViewHolder> {
                 customTabsIntent.launchUrl(context, Uri.parse(url));
             }
             else if(position == 4){
-               Intent i = new Intent(context, Activity_morefeatures.class);
-               context.startActivity(i);
+                Intent intent = Activity_more_features.newIntent(context);
+                context.startActivity(intent);
             }
         });
     }

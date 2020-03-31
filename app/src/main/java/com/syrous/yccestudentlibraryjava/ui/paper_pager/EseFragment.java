@@ -1,9 +1,8 @@
-package com.syrous.yccestudentlibraryjava.ui.pager;
+package com.syrous.yccestudentlibraryjava.ui.paper_pager;
 
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,19 +24,20 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MseFragment extends Fragment {
+public class EseFragment extends Fragment {
 
     private RecyclerView mRecyclerview;
+    private List<ModelPaper> esePaperList;
     private FirebaseFirestore db;
-    private List<ModelPaper> msePaperList;
     private String path;
     private Activity activity;
-    public MseFragment(Activity activity) {
+
+    public EseFragment(Activity activity) {
         this.activity = activity;
     }
 
-    public static MseFragment newInstance(Activity activity, String path, String exam){
-        MseFragment fragment = new MseFragment(activity);
+    public static EseFragment newInstance(Activity activity, String path, String exam){
+        EseFragment fragment = new EseFragment(activity);
         Bundle args = new Bundle();
         args.putString(GlobalConstants.EXAM_NAME, exam);
         args.putString(GlobalConstants.DOWNLOAD_SERVER_PATH, path);
@@ -49,6 +49,7 @@ public class MseFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         db = FirebaseFirestore.getInstance();
+        assert getArguments() != null;
         path = getArguments().getString(GlobalConstants.DOWNLOAD_SERVER_PATH) +
                 "/" + getArguments().getString(GlobalConstants.EXAM_NAME);
     }
@@ -56,31 +57,27 @@ public class MseFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_mse, container,false);
-        mRecyclerview = v.findViewById(R.id.recycler_mse);
-        Log.d("Download Paper", "Paper Title : "+ path);
+        View v = inflater.inflate(R.layout.fragment_pager, container, false);
+        mRecyclerview = v.findViewById(R.id.recycler_pager);
+
         db.collection(path)
                 .get()
                 .addOnSuccessListener((task) -> {
-                    msePaperList = new ArrayList<>();
+                    esePaperList = new ArrayList<>();
                    for(DocumentSnapshot doc: task.getDocuments()){
-                       ModelPaper paper = new ModelPaper(doc.getId(), doc.get(GlobalConstants.DEPARTMENT_NAME).toString(),
-                               doc.get(GlobalConstants.COURSE_CODE).toString(), doc.get(GlobalConstants.EXAM).toString(),
-                               doc.get(GlobalConstants.NAME_FIELD).toString(), doc.get(GlobalConstants.TIME_FIELD).toString(),
-                               doc.get(GlobalConstants.TIME_FIELD).toString(), doc.get(GlobalConstants.URL_FIELD).toString(),
-                               Integer.parseInt(doc.get(GlobalConstants.EXAMINATION_YEAR).toString()));
-                       Log.d("Download Paper", "Paper Title : ");
-
-                        msePaperList.add(paper);
+                      ModelPaper paper = new ModelPaper(doc.getId(), doc.get(GlobalConstants.DEPARTMENT_NAME).toString(),
+                              doc.get(GlobalConstants.COURSE_CODE).toString(), doc.get(GlobalConstants.EXAM).toString(),
+                              doc.get(GlobalConstants.NAME_FIELD).toString(), doc.get(GlobalConstants.TIME_FIELD).toString(),
+                              doc.get(GlobalConstants.URL_FIELD).toString(), doc.get(GlobalConstants.TIME_FIELD).toString(),
+                              Integer.parseInt(doc.get(GlobalConstants.EXAMINATION_YEAR).toString()));
+                       esePaperList.add(paper);
                    }
-                    PagerAdapter adapter = new PagerAdapter(activity, getActivity(), msePaperList);
+                    PaperAdapter recyclerViewAdapter = new PaperAdapter(activity, getActivity(), esePaperList);
                     mRecyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
-                    mRecyclerview.setAdapter(adapter);
-                }).addOnFailureListener((task) -> {
-                    Log.e("Download Error ", task.getMessage());
-        });
+                    mRecyclerview.setAdapter(recyclerViewAdapter);
+                });
+
 
         return v;
     }
-
 }

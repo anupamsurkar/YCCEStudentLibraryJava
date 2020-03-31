@@ -1,4 +1,4 @@
-package com.syrous.yccestudentlibraryjava.ui.pager;
+package com.syrous.yccestudentlibraryjava.ui.paper_pager;
 
 import android.os.Bundle;
 
@@ -75,7 +75,7 @@ public class ActivityPager extends AppCompatActivity {
         path = path + "/" + courseCode.toLowerCase();
         //Viewpager2
         ViewPager2 viewPager2 = findViewById(R.id.myViewPager);
-        viewPager2.setAdapter(new ViewPagerAdapter(getSupportFragmentManager(), getLifecycle(), this, path));
+        viewPager2.setAdapter(new ViewPagerAdapter(getSupportFragmentManager(), getLifecycle(), ActivityPager.this, path));
 
          TabLayout tabLayout = findViewById(R.id.myTabLayout);
 

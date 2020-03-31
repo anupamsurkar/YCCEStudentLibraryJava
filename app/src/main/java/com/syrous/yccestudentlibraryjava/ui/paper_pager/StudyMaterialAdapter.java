@@ -1,4 +1,4 @@
-package com.syrous.yccestudentlibraryjava.ui.pager;
+package com.syrous.yccestudentlibraryjava.ui.paper_pager;
 
 import android.content.Context;
 import android.view.LayoutInflater;

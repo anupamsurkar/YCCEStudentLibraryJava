@@ -3,14 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.pager.EseFragment">
+    tools:context=".ui.paper_pager.MseFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_ese"
+        android:id="@+id/recycler_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="0dp"
+        android:layout_marginStart="1dp"
         android:layout_marginTop="0dp" />
+
 </RelativeLayout>

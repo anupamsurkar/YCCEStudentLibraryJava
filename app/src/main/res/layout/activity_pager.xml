@@ -4,6 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.pager.ActivityPager">
+    tools:context=".ui.paper_pager.ActivityPager">
 
 </androidx.constraintlayout.widget.ConstraintLayout>

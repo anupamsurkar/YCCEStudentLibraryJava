@@ -1,32 +1,30 @@
-package com.syrous.yccestudentlibraryjava.ui.pager;
+package com.syrous.yccestudentlibraryjava.ui.paper_pager;
 
 import android.app.Activity;
-import android.content.ActivityNotFoundException;
 import android.content.Context;
-import android.net.Uri;
-import android.util.Log;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.browser.customtabs.CustomTabsIntent;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.syrous.yccestudentlibraryjava.R;
 import com.syrous.yccestudentlibraryjava.data.ModelPaper;
+import com.syrous.yccestudentlibraryjava.utils.DownloadAndSaveUtil;
 
 import java.util.List;
 
-public class PagerAdapter extends RecyclerView.Adapter<PagerAdapter.MyViewHolder> {
+public class PaperAdapter extends RecyclerView.Adapter<PaperAdapter.MyViewHolder> {
 
     private Context context;
     private List<ModelPaper> mData;
     private Activity activity;
 
-    public PagerAdapter(Activity activity,Context context, List<ModelPaper> mData) {
+    public PaperAdapter(Activity activity, Context context, List<ModelPaper> mData) {
         this.context = context;
         this.mData = mData;
         this.activity = activity;
@@ -45,16 +43,8 @@ public class PagerAdapter extends RecyclerView.Adapter<PagerAdapter.MyViewHolder
         holder.paperName.setText(name);
         holder.courseCode.setText(mData.get(position).getUploadedBy());
         holder.mainLayout.setOnClickListener((View) -> {
-            CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
-            builder.setToolbarColor(-65536);
-            builder.setShowTitle(true);
-            CustomTabsIntent customTabsIntent = builder.build();
-            String url = mData.get(position).getDownloadUrl();
-            try {
-                customTabsIntent.launchUrl(activity, Uri.parse(url));
-            }catch (ActivityNotFoundException e){
-                Log.d("Activity", "ActivityNotFound : "+e.getMessage());
-            }
+            Intent i = DownloadAndSaveUtil.newIntent(activity, mData.get(position));
+            DownloadAndSaveUtil.enqueueWork(activity, i);
         });
     }
 
@@ -67,6 +57,7 @@ public class PagerAdapter extends RecyclerView.Adapter<PagerAdapter.MyViewHolder
 
         private TextView paperName;
         private TextView courseCode;
+
         ConstraintLayout mainLayout;
         public MyViewHolder(View itemView){
             super(itemView);

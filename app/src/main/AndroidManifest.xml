@@ -8,14 +8,16 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
+        android:name=".StudentLibraryApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/ycce"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.other_features.Activity_morefeatures" />
-        <activity android:name=".ui.pager.ActivityPager" />
+      
+        <activity android:name=".ui.more_features.Activity_more_features"/>
+        <activity android:name=".ui.paper_pager.ActivityPager" />
         <activity android:name=".ui.el.ActivityElHome" />
         <activity android:name=".ui.ee.ActivityEeHome" />
         <activity android:name=".ui.etc.ActivityEtHome" />
@@ -38,11 +40,23 @@
         <activity android:name=".ui.home.ActivityHome" />
         <activity android:name=".ui.upload.ActivityUpload" />
         <activity android:name=".ui.subject.ActivitySubject" />
-
+        <activity android:name=".ui.pdf_renderer.ActivityPDFRenderer"/>
         <service
             android:name=".utils.UploadUtil"
             android:permission="android.permission.BIND_JOB_SERVICE" />
 
+        <service android:name=".utils.DownloadAndSaveUtil"
+            android:permission="android.permission.BIND_JOB_SERVICE"/>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.syrous.yccestudentlibraryjava.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+            android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"/>
+        </provider>
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
