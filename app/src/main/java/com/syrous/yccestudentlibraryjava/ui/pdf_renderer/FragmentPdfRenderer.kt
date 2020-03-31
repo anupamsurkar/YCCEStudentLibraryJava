@@ -1,21 +1,7 @@
-/*
- * Copyright (C) 2017 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 
 package com.syrous.yccestudentlibraryjava.ui.pdf_renderer
 
+import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -24,10 +10,14 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import androidx.annotation.RequiresApi
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.syrous.yccestudentlibraryjava.R
+import com.syrous.yccestudentlibraryjava.databinding.PdfRendererBasicFragmentBinding
+import timber.log.Timber
+import java.io.File
 
 /**
  * This fragment has a big [ImageView] that shows PDF pages, and 2 [Button]s to move between pages.
@@ -36,37 +26,50 @@ import com.syrous.yccestudentlibraryjava.R
 @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
 class FragmentPdfRenderer : Fragment() {
 
-    private val viewModel: PdfRendererViewModel? = null
+    private lateinit var viewModel: PdfRendererViewModel
 
+    private lateinit var binding: PdfRendererBasicFragmentBinding
+
+    @SuppressLint("BinaryOperationInTimber")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.pdf_renderer_basic_fragment, container, false)
+
+        val file = activity?.intent?.getSerializableExtra("PDF_FILE") as File
+        Timber.d("File path : ${file.absolutePath}")
+
+       binding = DataBindingUtil.inflate(
+                inflater,
+                R.layout.pdf_renderer_basic_fragment,
+                container,
+                false)
+
+        val viewModelFactory = PdfViewModelFactory(requireActivity().application, file)
+
+        viewModel = ViewModelProvider(this, viewModelFactory)
+                .get(PdfRendererViewModel::class.java)
+
+        binding.pdfRendererViewModel = viewModel
+
+        binding.lifecycleOwner = this
+
+
+        viewModel.pageBitmap.observe(viewLifecycleOwner, Observer { bitmap ->
+            binding.pdfImageView.setImageBitmap(bitmap)
+        })
+
+        viewModel.previousEnabled.observe(viewLifecycleOwner, Observer {
+            binding.previous.isEnabled = it
+        })
+
+        viewModel.nextEnabled.observe(viewLifecycleOwner, Observer {
+            binding.next.isEnabled = it
+        })
+
+        return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        // View references.
-        val image: ImageView = view.findViewById(R.id.image)
-        val buttonPrevious: Button = view.findViewById(R.id.previous)
-        val buttonNext: Button = view.findViewById(R.id.next)
-
-        // Bind data.
-        viewModel?.pageInfo?.observe(viewLifecycleOwner, Observer { (index, count) ->
-//            activity?.title = getString(R.string.app_name_with_index, index + 1, count)
-        })
-        viewModel?.pageBitmap?.observe(viewLifecycleOwner, Observer { image.setImageBitmap(it) })
-        viewModel?.previousEnabled?.observe(viewLifecycleOwner, Observer {
-            buttonPrevious.isEnabled = it
-        })
-        viewModel?.nextEnabled?.observe(viewLifecycleOwner, Observer {
-            buttonNext.isEnabled = it
-        })
-
-        // Bind events.
-        buttonPrevious.setOnClickListener { viewModel?.showPrevious() }
-        buttonNext.setOnClickListener { viewModel?.showNext() }
-    }
 
 }

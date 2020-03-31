@@ -1,19 +1,3 @@
-/*
- * Copyright (C) 2019 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package com.syrous.yccestudentlibraryjava.ui.pdf_renderer
 
 import android.app.Application
@@ -33,15 +17,14 @@ import java.io.File
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
 
+@Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
 class PdfRendererViewModel @JvmOverloads constructor(
         application: Application,
+        file: File,
         useInstantExecutor: Boolean = false
 ) : AndroidViewModel(application) {
 
-    companion object {
-        const val FILENAME = "sample.pdf"
-    }
 
     private val job = Job()
     private val executor = if (useInstantExecutor) {
@@ -55,6 +38,7 @@ class PdfRendererViewModel @JvmOverloads constructor(
     private var pdfRenderer: PdfRenderer? = null
     private var currentPage: PdfRenderer.Page? = null
     private var cleared = false
+    private var fileToOpen = file
 
     private val _pageBitmap = MutableLiveData<Bitmap>()
     val pageBitmap: LiveData<Bitmap>
@@ -101,6 +85,7 @@ class PdfRendererViewModel @JvmOverloads constructor(
         }
     }
 
+
     fun showNext() {
         scope.launch {
             pdfRenderer?.let { renderer ->
@@ -115,16 +100,18 @@ class PdfRendererViewModel @JvmOverloads constructor(
 
     private fun openPdfRenderer() {
         val application = getApplication<Application>()
-        val file = File(application.cacheDir, FILENAME)
-        if (!file.exists()) {
-            application.assets.open(FILENAME).use { asset ->
-                file.writeBytes(asset.readBytes())
-            }
-        }
-        fileDescriptor = ParcelFileDescriptor.open(file, ParcelFileDescriptor.MODE_READ_ONLY).also {
+//        if (!file.exists()) {
+//                application.assets.open(filename).use { asset ->
+//                    file.writeBytes(asset.readBytes())
+//                }
+//            }
+
+        fileDescriptor = ParcelFileDescriptor.open(fileToOpen, ParcelFileDescriptor.MODE_READ_ONLY).also {
             pdfRenderer = PdfRenderer(it)
+//        }
         }
     }
+
 
     private fun showPage(index: Int) {
         // Make sure to close the current page before opening another one.

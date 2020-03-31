@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.syrous.yccestudentlibraryjava.Constants.GlobalConstants;
 import com.syrous.yccestudentlibraryjava.R;
 import com.syrous.yccestudentlibraryjava.data.ModelSubject;
-import com.syrous.yccestudentlibraryjava.ui.pager.ActivityPager;
+import com.syrous.yccestudentlibraryjava.ui.paper_pager.ActivityPager;
 
 import java.util.List;
 

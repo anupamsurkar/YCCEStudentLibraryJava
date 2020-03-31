@@ -2,9 +2,6 @@ package com.syrous.yccestudentlibraryjava.utils;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
-import android.os.Binder;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.JobIntentService;
@@ -13,10 +10,11 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.syrous.yccestudentlibraryjava.data.ModelPaper;
+import com.syrous.yccestudentlibraryjava.ui.pdf_renderer.ActivityPDFRenderer;
 
 import java.io.File;
 
-import static androidx.core.content.FileProvider.getUriForFile;
+import timber.log.Timber;
 
 public class DownloadAndSaveUtil extends JobIntentService {
 
@@ -53,26 +51,15 @@ public class DownloadAndSaveUtil extends JobIntentService {
         String filePath = paper.getExamType();
         String filename = paper.getPaperTitle() + ".pdf";
         String storageLocation = getExternalFilesDir(filePath).toString();
-        Log.d("FilePath", storageLocation);
+        Timber.d(storageLocation);
         File localFile = new File(getExternalFilesDir(filePath), filename);
 
-//        refs.getFile(localFile).addOnSuccessListener(taskSnapshot -> {
-//        });
+        refs.getFile(localFile).addOnSuccessListener(taskSnapshot -> {
+        });
 
-
-        Uri fileUri = getUriForFile(this, getPackageName()+".fileprovider", localFile);
-
-        int uid = Binder.getCallingUid();
-        String callingPackage = getPackageManager().getNameForUid(uid);
-
-        getApplication().grantUriPermission(callingPackage, fileUri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        Log.d("FilePath", fileUri.toString());
-        Intent i = new Intent(Intent.ACTION_VIEW);
-        i.setDataAndType(fileUri, getContentResolver().getType(fileUri));
-        i.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        i.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+        Intent i = new Intent(this, ActivityPDFRenderer.class);
+        i.putExtra("PDF_FILE", localFile);
         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(i);
-
     }
 }

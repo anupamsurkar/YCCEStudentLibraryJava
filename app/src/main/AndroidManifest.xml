@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
+        android:name=".StudentLibraryApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/ycce"
@@ -16,7 +17,7 @@
         android:theme="@style/AppTheme">
       
         <activity android:name=".ui.more_features.Activity_more_features"/>
-        <activity android:name=".ui.pager.ActivityPager" />
+        <activity android:name=".ui.paper_pager.ActivityPager" />
         <activity android:name=".ui.el.ActivityElHome" />
         <activity android:name=".ui.ee.ActivityEeHome" />
         <activity android:name=".ui.etc.ActivityEtHome" />
@@ -44,7 +45,8 @@
             android:name=".utils.UploadUtil"
             android:permission="android.permission.BIND_JOB_SERVICE" />
 
-        <service android:name=".utils.DownloadAndSaveUtil"/>
+        <service android:name=".utils.DownloadAndSaveUtil"
+            android:permission="android.permission.BIND_JOB_SERVICE"/>
 
         <provider
             android:name="androidx.core.content.FileProvider"

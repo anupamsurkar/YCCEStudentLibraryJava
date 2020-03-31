@@ -1,4 +1,4 @@
-package com.syrous.yccestudentlibraryjava.ui.pager;
+package com.syrous.yccestudentlibraryjava.ui.paper_pager;
 
 import android.app.Activity;
 import android.content.Context;
@@ -18,13 +18,13 @@ import com.syrous.yccestudentlibraryjava.utils.DownloadAndSaveUtil;
 
 import java.util.List;
 
-public class PagerAdapter extends RecyclerView.Adapter<PagerAdapter.MyViewHolder> {
+public class PaperAdapter extends RecyclerView.Adapter<PaperAdapter.MyViewHolder> {
 
     private Context context;
     private List<ModelPaper> mData;
     private Activity activity;
 
-    public PagerAdapter(Activity activity,Context context, List<ModelPaper> mData) {
+    public PaperAdapter(Activity activity, Context context, List<ModelPaper> mData) {
         this.context = context;
         this.mData = mData;
         this.activity = activity;
@@ -57,6 +57,7 @@ public class PagerAdapter extends RecyclerView.Adapter<PagerAdapter.MyViewHolder
 
         private TextView paperName;
         private TextView courseCode;
+
         ConstraintLayout mainLayout;
         public MyViewHolder(View itemView){
             super(itemView);

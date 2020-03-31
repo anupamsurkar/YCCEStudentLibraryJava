@@ -1,4 +1,4 @@
-package com.syrous.yccestudentlibraryjava.ui.pager;
+package com.syrous.yccestudentlibraryjava.ui.paper_pager;
 
 
 import android.app.Activity;
@@ -72,7 +72,7 @@ public class EseFragment extends Fragment {
                               Integer.parseInt(doc.get(GlobalConstants.EXAMINATION_YEAR).toString()));
                        esePaperList.add(paper);
                    }
-                    PagerAdapter recyclerViewAdapter = new PagerAdapter(activity, getActivity(), esePaperList);
+                    PaperAdapter recyclerViewAdapter = new PaperAdapter(activity, getActivity(), esePaperList);
                     mRecyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
                     mRecyclerview.setAdapter(recyclerViewAdapter);
                 });

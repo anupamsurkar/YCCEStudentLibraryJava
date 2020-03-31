@@ -1,9 +1,8 @@
-package com.syrous.yccestudentlibraryjava.ui.pager;
+package com.syrous.yccestudentlibraryjava.ui.paper_pager;
 
 
-import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +16,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.syrous.yccestudentlibraryjava.Constants.GlobalConstants;
 import com.syrous.yccestudentlibraryjava.R;
-import com.syrous.yccestudentlibraryjava.data.ModelPaper;
+import com.syrous.yccestudentlibraryjava.data.ModelResource;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,25 +24,27 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MseFragment extends Fragment {
+public class StudyMaterialFragment extends Fragment {
 
     private RecyclerView mRecyclerview;
+    private List<ModelResource> resourceList;
     private FirebaseFirestore db;
-    private List<ModelPaper> msePaperList;
     private String path;
-    private Activity activity;
-    public MseFragment(Activity activity) {
-        this.activity = activity;
+    private Context context;
+
+    public StudyMaterialFragment(Context context) {
+        this.context = context;
     }
 
-    public static MseFragment newInstance(Activity activity, String path, String exam){
-        MseFragment fragment = new MseFragment(activity);
+    public static StudyMaterialFragment newInstance(Context context, String path, String exam){
+        StudyMaterialFragment fragment = new StudyMaterialFragment(context);
         Bundle args = new Bundle();
         args.putString(GlobalConstants.EXAM_NAME, exam);
         args.putString(GlobalConstants.DOWNLOAD_SERVER_PATH, path);
         fragment.setArguments(args);
         return fragment;
     }
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -56,30 +57,25 @@ public class MseFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_pager, container,false);
+      View v = inflater.inflate(R.layout.fragment_pager,container,false);
+
         mRecyclerview = v.findViewById(R.id.recycler_pager);
-        Log.d("Download Paper", "Paper Title : "+ path);
+
         db.collection(path)
                 .get()
                 .addOnSuccessListener((task) -> {
-                    msePaperList = new ArrayList<>();
-                   for(DocumentSnapshot doc: task.getDocuments()){
-                       ModelPaper paper = new ModelPaper(doc.getId(), doc.get(GlobalConstants.DEPARTMENT_NAME).toString(),
-                               doc.get(GlobalConstants.COURSE_CODE).toString(), doc.get(GlobalConstants.EXAM).toString(),
-                               doc.get(GlobalConstants.NAME_FIELD).toString(), doc.get(GlobalConstants.TIME_FIELD).toString(),
-                               doc.get(GlobalConstants.URL_FIELD).toString(), doc.get(GlobalConstants.TIME_FIELD).toString(),
-                               Integer.parseInt(doc.get(GlobalConstants.EXAMINATION_YEAR).toString()));
+                    resourceList = new ArrayList<>();
+                    for(DocumentSnapshot doc: task){
+//                        ModelResource resource = new ModelResource();
+//                        resourceList.add(resource);
+                    }
 
-                        msePaperList.add(paper);
-                   }
-                    PagerAdapter adapter = new PagerAdapter(activity, getActivity(), msePaperList);
+                    StudyMaterialAdapter adapter = new StudyMaterialAdapter(getActivity(), resourceList);
                     mRecyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
                     mRecyclerview.setAdapter(adapter);
-                }).addOnFailureListener((task) -> {
-                    Log.e("Download Error ", task.getMessage());
-        });
+
+                });
 
         return v;
     }
-
 }
